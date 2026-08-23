@@ -1,0 +1,88 @@
+handover:
+  id: FORTYGUARD-HACKATHON-26-HANDOVER
+  date: 2026-08-23
+  status: GATE_0_IN_PROGRESS_INITIAL_LANDSCAPE_CAPTURED
+
+  read_first:
+    - CANONICAL-STATE.yaml
+    - research/FORTYGUARD-GATE-0-PROBLEM-LANDSCAPE-AND-COLLISION-MAP.md
+
+  repository:
+    requested: Faadil1/fortyguard-temperature-ai-2026
+    active_accessible: Faadil1/Faadil1-fortyguard-temperature-ai-2026
+    branch: main
+    mismatch: UNRESOLVED_REQUESTED_REPO_404
+
+  non_negotiables:
+    - actual product stays out of Faadil1/pbpd-cowork-system
+    - PBPD 0.5.0 is primary build system
+    - I23 is shadow challenger only
+    - one real product only
+    - do not integrate I23 runtime
+    - do not mutate stable PBPD
+    - human final authority
+    - concept remains unlocked until Gate 0 freeze
+    - reject mechanisms, not domains, based on collision
+
+  current_gate: FORTYGUARD_GATE_0_PROBLEM_LANDSCAPE_AND_COLLISION_MAP
+  concept_locked: false
+
+  rule_state:
+    official_verified:
+      - global_virtual_free
+      - team_size_1_to_3_solo_allowed
+      - seven_tracks_exist
+      - Temperature_API_current_US_only_coverage
+    third_party_current_convergence:
+      - build_2026-08-18_to_2026-08-30
+      - deadline_2026-08-30_23_59_GST
+      - judging_2026-09-01_to_2026-09-15
+      - winners_2026-09-16
+      - prizes_USD_3000_2000_1000
+      - public_repo_demo_video_summary_API_usage_and_collaborator_access
+    unresolved:
+      - live_demo_formal_requirement
+      - video_2_to_5_vs_max_3_minutes
+      - weighted_vs_newer_judging_panel
+      - exact_collaborator_username
+      - remaining_legal_eligibility_exclusions
+
+  technical_state:
+    auth: api-key_header
+    async: POST_then_activity_id_then_GET_status
+    heatmap_granularity_m: [60, 80, 100]
+    heatmap_analytics: [tcm, time_of_measure, exceedance, persistence]
+    other_endpoints: [env_params, satellite, streetview, heat_intelligence]
+    strongest_causality: [spatial_variation, duration, persistence, peak_timing, physical_context_segmentation]
+    API_proof: PENDING_OWN_KEY
+
+  collision_state:
+    high:
+      - generic_monitor_alert_agent_dashboard
+      - municipal_HVI_dispatch
+      - worker_work_rest_voice_SMS
+      - bus_stop_transit_prioritization
+      - cool_route_fleet
+      - real_estate_parcel_screening
+      - generic_data_center_cooling
+      - generic_field_ops_agent
+    note: official quickstart itself supplies real-estate, bus-stop, parks and parcel workflows
+
+  unlocked_problem_families_for_deeper_evidence:
+    - distribution_grid_and_electrical_asset_thermal_operations
+    - industrial_outdoor_asset_maintenance_and_plant_yard_sequencing
+    - EV_charging_and_distributed_energy_asset_thermal_operations
+    - large_venue_or_campus_operational_allocation
+    - energy_building_portfolio_or_campus_cooling_allocation
+    - aviation_ramp_and_ground_operations
+
+  pbpd_checkpoint_1:
+    status: NOT_RUN
+    reason: problem_job_not_selected_and_Gate_0_not_frozen
+
+  exact_next_gate: FORTYGUARD_GATE_0_PROBLEM_LANDSCAPE_AND_COLLISION_MAP
+  exact_next_action: >-
+    Deepen evidence for the six unlocked problem families: current problem cost, decision owner, workaround, why generic weather is
+    inadequate, FortyGuard dependency, accessible demo data and current competitor collision. Resolve submission contradictions where
+    possible and obtain our API proof. Freeze Gate 0 before any concept generation. Then capture PBPD 0.5.0 checkpoint 1 first and I23
+    separately before the human problem/job decision.
