@@ -1,0 +1,246 @@
+canonical_state:
+  protocol_version: 1
+  project: FORTYGUARD_HACKATHON_26_TEMPERATURE_AI
+  date: 2026-08-23
+  source_of_truth: GITHUB_BUILD_REPOSITORY
+
+  repository:
+    requested: Faadil1/fortyguard-temperature-ai-2026
+    active_accessible: Faadil1/Faadil1-fortyguard-temperature-ai-2026
+    branch: main
+    alignment_status: UNRESOLVED_NAME_MISMATCH
+    requested_repo_probe: HTTP_404
+    active_repo_initial_state: EMPTY_BEFORE_GATE_0_ARTIFACTS
+    separation_from_pbpd: ENFORCED
+
+  objective:
+    primary: MAXIMIZE_REAL_HACKATHON_WIN_PROBABILITY
+    experiment_secondary: true
+    concept_locked: false
+
+  pbpd_authority:
+    canonical_repository: Faadil1/pbpd-cowork-system
+    canonical_branch: agent/pbpd-i23-outcome-intelligence
+    primary_build_system: PBPD_0_5_0_STABLE
+    i23_role: SHADOW_CHALLENGER_ONLY
+    stable_pbpd_mutated: false
+    i23_runtime_integrated: false
+    duplicate_product_build: FORBIDDEN
+    human_final_authority: true
+    p03_status: OPEN_BY_USER_AUTHORITY
+    p02_result: NO_MATERIAL_BEHAVIORAL_GAIN
+    p02_stable_pass: 14/14
+    p02_i23_pass: 14/14
+    p02_strict_improvements: 0
+    p02_ties: 14
+    p02_regressions: 0
+
+  current_gate:
+    id: FORTYGUARD_GATE_0_PROBLEM_LANDSCAPE_AND_COLLISION_MAP
+    status: IN_PROGRESS_INITIAL_LANDSCAPE_CAPTURED
+    concept_generation_allowed: false
+    concept_selection_allowed: false
+    report: research/FORTYGUARD-GATE-0-PROBLEM-LANDSCAPE-AND-COLLISION-MAP.md
+
+  official_rules:
+    event_currently_active:
+      value: true
+      class: OFFICIAL_VERIFIED
+    format:
+      value: GLOBAL_VIRTUAL_FREE
+      class: OFFICIAL_VERIFIED
+    team_size:
+      value: 1_TO_3_SOLO_ALLOWED
+      class: OFFICIAL_VERIFIED
+    tracks_count:
+      value: 7
+      class: OFFICIAL_VERIFIED
+    track_names:
+      value:
+        - Resilient Cities & Infrastructure
+        - Future Buildings & Energy
+        - Industrial & Enterprise
+        - Government & Environment
+        - Model Designing
+        - Agentic (API + Agentic)
+        - Data Analysis & Correlation
+      class: THIRD_PARTY_VERIFIED_CURRENT_PAGE_TRANSCRIPTION
+    build_sprint:
+      value: 2026-08-18_TO_2026-08-30
+      class: THIRD_PARTY_VERIFIED_ORGANIZER_HOSTED
+    submission_deadline:
+      value: 2026-08-30T23:59:00+04:00
+      class: THIRD_PARTY_VERIFIED_CURRENT_HANDBOOK_TRANSCRIPTION
+    judging_window:
+      value: 2026-09-01_TO_2026-09-15
+      class: THIRD_PARTY_VERIFIED_ORGANIZER_HOSTED
+    winner_announcement:
+      value: 2026-09-16
+      class: THIRD_PARTY_VERIFIED_ORGANIZER_HOSTED
+    prize_structure:
+      value: USD_6000_TOTAL_FIRST_3000_SECOND_2000_THIRD_1000
+      class: THIRD_PARTY_VERIFIED_ORGANIZER_HOSTED
+    temperature_api_must_be_central:
+      value: true
+      class: THIRD_PARTY_VERIFIED_CURRENT_RULE_TRANSCRIPTION
+    geography:
+      value: UNITED_STATES_DATA_COVERAGE
+      class: OFFICIAL_VERIFIED_API_DOCS
+    required_deliverables_policy:
+      class: UNRESOLVED_CONFLICTING_CURRENT_SOURCES
+      safe_union:
+        - working prototype
+        - GitHub repository
+        - live public demo
+        - demo video <= 3 minutes
+        - written summary <= 500 words
+        - API usage / endpoints / measured result documentation
+        - judge collaborator access
+    repository_visibility:
+      value: PUBLIC_APPEARS_REQUIRED
+      class: THIRD_PARTY_VERIFIED
+    collaborator_identity:
+      value: Hackathon-FG_or_other_FortyGuard_account
+      class: UNRESOLVED
+    judging_criteria:
+      weighted_transcription: Impact_40_Technical_35_Innovation_15_Communication_10
+      newer_panel_transcription: Innovation_Technical_Quality_Business_Viability_Presentation
+      class: UNRESOLVED_CONFLICTING_CURRENT_PAGE_PANELS
+
+  technical_landscape:
+    auth: API_KEY_HEADER_api-key
+    async_pattern: POST_ANALYSIS_RETURNS_ACTIVITY_ID_THEN_GET_STATUS
+    region: UNITED_STATES_ONLY
+    heatmap:
+      endpoint: POST_/v1/heatmap
+      granularity_m: [60, 80, 100]
+      analytic_types: [tcm, time_of_measure, exceedance, persistence]
+      forecast_horizon: UP_TO_12_HOURS_DOCS
+    environmental_parameters:
+      endpoint: POST_/v1/env_params
+      examples: [heat_index, apparent_temperature, humidity, precipitation, cloud_cover, wet_bulb, AQI, pollutants, methane, CO2, GHI, DNI, DHI]
+    satellite_segmentation:
+      endpoint: POST_/v1/satellite
+      plan: PREMIUM
+    streetview_segmentation:
+      endpoint: POST_/v1/streetview
+      plan: PREMIUM
+    heat_intelligence:
+      endpoint: POST_/v1/heat_intelligence
+      plan: PREMIUM
+    plan_docs:
+      basic_monthly_credits: 1000000
+      premium_monthly_credits: 5000000
+      basic_heatmap_max_area_mi2: 10
+      premium_heatmap_max_area_mi2: 50
+    numeric_rate_limit: UNRESOLVED_NOT_PUBLISHED_IN_CAPTURED_DOCS
+    historical_floor: UNRESOLVED_2019_DOCS_VS_2021_HACKATHON_FAQ_TRANSCRIPTION
+    filter_type_range: UNRESOLVED_ENDPOINT_SUPPORTS_1_TO_4_LIMITATIONS_PAGE_HAS_LISTED_1_TO_3
+    two_meter_claim: DO_NOT_INTERPRET_AS_API_GRID_RESOLUTION
+    strongest_sponsor_causal_primitives:
+      - intra_site_spatial_thermal_field
+      - exceedance_duration
+      - persistence_duration
+      - timing_of_peak
+      - satellite_physical_context
+      - streetview_physical_context
+      - wet_bulb_solar_and_environmental_context_when_job_requires_it
+
+  collision_map:
+    saturation_level: HIGH
+    high_collision_mechanisms:
+      - generic_heat_monitoring_alert_ai_agent_dashboard
+      - municipal_heat_map_hvi_cooling_resource_dispatch
+      - outdoor_worker_wbgt_work_rest_sms_voice_alerts
+      - transit_bus_stop_cooling_or_shade_prioritization
+      - coolest_route_fleet_heat_alerting
+      - real_estate_portfolio_heat_screening_or_parcel_due_diligence
+      - generic_data_center_cooling_copilot
+      - generic_field_ops_threshold_agent_creates_tasks
+    sponsor_quickstart_collision:
+      - real_estate_portfolio_heat_risk
+      - urban_planner_bus_stop_cooling
+      - public_parks_heat_resilience
+      - single_parcel_heat_due_diligence
+      - multi_parcel_heat_screening
+    notable_public_projects:
+      - MrLynxGamer/Heatguard-ai-agent
+      - adina-mini/heatops-autopilot
+      - Damso74/fortyguard-heat-priority-engine
+      - abdulrehman-980/DC-Cooling-Copilot
+      - Cool-Staff/heatsafe-web
+      - arbonomous/heatwatch-fortyguard
+      - HamzaNasiem/ThermaShift-AI
+      - hirahmad1/heat-health-risk-predictor
+      - TeamXOF/HeatSentinel
+      - KanbanCTRL_public_participant_build
+
+  problem_landscape:
+    current_high_potential_families_unlocked:
+      - distribution_grid_and_electrical_asset_thermal_operations
+      - industrial_outdoor_asset_maintenance_and_plant_yard_sequencing
+      - EV_charging_and_distributed_energy_asset_thermal_operations
+      - large_venue_or_campus_operational_allocation
+      - energy_building_portfolio_or_campus_cooling_allocation
+      - aviation_ramp_and_ground_operations
+    watchlist:
+      - data_centers_HIGH_VALUE_BUT_HIGHER_COLLISION
+      - logistics_and_cold_chain_SPONSOR_CAUSALITY_NEEDS_PROOF
+      - emergency_response_HIGH_CONSEQUENCE_BUT_MECHANISM_COLLISION
+    currently_deprioritized_due_collision:
+      - municipal_HVI_command_center
+      - outdoor_worker_alerting
+      - transit_bus_stop_prioritization
+      - real_estate_parcel_screening
+      - generic_cool_route_fleet_alerts
+
+  i23_checkpoints:
+    problem_job_selection:
+      status: NOT_RUN_PENDING_GATE_0_FREEZE
+    concept_selection:
+      status: NOT_RUN
+    architecture_sponsor_causality_proof_path:
+      status: NOT_RUN
+    effort_cutline:
+      status: NOT_RUN
+    submission_freeze:
+      status: NOT_RUN
+
+  unknowns:
+    - direct_current_participant_handbook_and_submission_form_requirements
+    - exact_live_demo_requirement
+    - exact_video_duration_rule_source_of_truth
+    - exact_current_judging_rubric
+    - exact_repo_collaborator_account
+    - non_team_eligibility_legal_exclusions
+    - our_actual_hackathon_API_plan_and_key_provisioning
+    - empirical_API_schema_units_area_temporal_behavior_for_our_key
+    - targeted_collision_depth_for_current_unlocked_problem_families
+    - domain_thresholds_workarounds_and_demo_datasets_for_unlocked_families
+    - requested_vs_accessible_build_repository_name
+
+  milestone_history:
+    - date: 2026-08-23
+      milestone: OFFICIAL_RULE_VERIFICATION_INITIAL_PASS
+      status: COMPLETE_WITH_UNRESOLVED_CONTRADICTIONS
+    - date: 2026-08-23
+      milestone: TECHNICAL_API_LANDSCAPE_INITIAL_PASS
+      status: COMPLETE_DOC_LEVEL_API_PROOF_PENDING
+    - date: 2026-08-23
+      milestone: COMPETITIVE_COLLISION_INITIAL_PASS
+      status: COMPLETE_BROAD_TARGETED_TOP_FAMILY_SEARCH_PENDING
+    - date: 2026-08-23
+      milestone: PROBLEM_JOB_LANDSCAPE_INITIAL_PASS
+      status: COMPLETE_UNFROZEN
+
+  exact_next_gate: FORTYGUARD_GATE_0_PROBLEM_LANDSCAPE_AND_COLLISION_MAP
+  exact_next_action: >-
+    Resolve current submission/rule contradictions where possible, run targeted collision and external domain evidence research for
+    the six unlocked problem families, verify available public/demo datasets and sponsor causality, then freeze Gate 0. After freeze,
+    capture PBPD 0.5.0 checkpoint-1 recommendation first, run I23 independently as shadow challenger, preserve disagreement, obtain
+    human decision, and only then begin independent concept-mechanism divergence.
+
+  continuity_protocol:
+    canonical_state_replaces_prior_current_state: true
+    handover_after_significant_milestone: true
+    canonical_state_over_chat_memory: true
