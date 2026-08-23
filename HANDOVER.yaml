@@ -1,11 +1,12 @@
 handover:
   id: FORTYGUARD-HACKATHON-26-HANDOVER
   date: 2026-08-23
-  status: GATE_0_IN_PROGRESS_INITIAL_LANDSCAPE_CAPTURED
+  status: GATE_0_FROZEN_CHECKPOINT_1_PENDING_HUMAN_DECISION
 
   read_first:
     - CANONICAL-STATE.yaml
-    - research/FORTYGUARD-GATE-0-PROBLEM-LANDSCAPE-AND-COLLISION-MAP.md
+    - research/FORTYGUARD-GATE-0-FREEZE.md
+    - decisions/CHECKPOINT-1-PROBLEM-JOB-SELECTION.yaml
 
   repository:
     requested: Faadil1/fortyguard-temperature-ai-2026
@@ -13,76 +14,68 @@ handover:
     branch: main
     mismatch: UNRESOLVED_REQUESTED_REPO_404
 
-  non_negotiables:
-    - actual product stays out of Faadil1/pbpd-cowork-system
-    - PBPD 0.5.0 is primary build system
-    - I23 is shadow challenger only
-    - one real product only
-    - do not integrate I23 runtime
-    - do not mutate stable PBPD
-    - human final authority
-    - concept remains unlocked until Gate 0 freeze
-    - reject mechanisms, not domains, based on collision
+  authority:
+    primary_build_system: PBPD_0_5_0_STABLE
+    i23_role: SHADOW_CHALLENGER_ONLY
+    stable_pbpd_mutated: false
+    i23_runtime_integrated: false
+    one_real_product_only: true
+    human_final_authority: true
 
-  current_gate: FORTYGUARD_GATE_0_PROBLEM_LANDSCAPE_AND_COLLISION_MAP
-  concept_locked: false
+  gate_0:
+    status: FROZEN
+    concept_locked: false
+    problem_job_selected: false
+    finalists:
+      - EV_CHARGING_NETWORK_THERMAL_CAPACITY_AND_DERATING_OPERATIONS
+      - DISTRIBUTION_GRID_TRANSFORMER_THERMAL_HEADROOM_AND_ASSET_OPERATIONS
 
-  rule_state:
-    official_verified:
-      - global_virtual_free
-      - team_size_1_to_3_solo_allowed
-      - seven_tracks_exist
-      - Temperature_API_current_US_only_coverage
-    third_party_current_convergence:
-      - build_2026-08-18_to_2026-08-30
-      - deadline_2026-08-30_23_59_GST
-      - judging_2026-09-01_to_2026-09-15
-      - winners_2026-09-16
-      - prizes_USD_3000_2000_1000
-      - public_repo_demo_video_summary_API_usage_and_collaborator_access
-    unresolved:
-      - live_demo_formal_requirement
-      - video_2_to_5_vs_max_3_minutes
-      - weighted_vs_newer_judging_panel
-      - exact_collaborator_username
-      - remaining_legal_eligibility_exclusions
+  why_EV_is_current_recommendation:
+    - explicit manufacturer ambient-temperature derating curves create an auditable causal model
+    - DOE_NREL_AFDC supplies current public U.S. charging-station asset data
+    - low visible FortyGuard participant collision in targeted searches
+    - FortyGuard spatial heat plus exceedance/persistence can change network allocation among nearby sites
+    - very strong 60_90_second judge proof
+    - lower data and domain risk than transformer/grid while retaining energy-infrastructure consequence
 
-  technical_state:
-    auth: api-key_header
-    async: POST_then_activity_id_then_GET_status
-    heatmap_granularity_m: [60, 80, 100]
-    heatmap_analytics: [tcm, time_of_measure, exceedance, persistence]
-    other_endpoints: [env_params, satellite, streetview, heat_intelligence]
-    strongest_causality: [spatial_variation, duration, persistence, peak_timing, physical_context_segmentation]
-    API_proof: PENDING_OWN_KEY
+  why_grid_is_runner_up:
+    - strongest direct FortyGuard commercial alignment with utilities and Smart Grid Managers
+    - strong external evidence that ambient heat affects transformer capacity, aging and failure risk
+    - higher consequence than EV charging
+    - but public asset/load data and defensible model requirements are materially harder inside the remaining build window
 
-  collision_state:
-    high:
-      - generic_monitor_alert_agent_dashboard
-      - municipal_HVI_dispatch
-      - worker_work_rest_voice_SMS
-      - bus_stop_transit_prioritization
-      - cool_route_fleet
-      - real_estate_parcel_screening
-      - generic_data_center_cooling
-      - generic_field_ops_agent
-    note: official quickstart itself supplies real-estate, bus-stop, parks and parcel workflows
+  checkpoint_1:
+    stable_recommendation: EV_CHARGING_NETWORK_THERMAL_CAPACITY_AND_DERATING_OPERATIONS
+    stable_captured_before_i23: true
+    i23_recommendation: EV_CHARGING_NETWORK_THERMAL_CAPACITY_AND_DERATING_OPERATIONS
+    material_disagreement: false
+    preliminary_experiment_grade: TIE
+    human_decision: PENDING
+    i23_note: >-
+      I23 makes the bounded causality probe explicit, but stable already recorded the same falsifier; same decision plus more structure
+      is not a strict improvement.
 
-  unlocked_problem_families_for_deeper_evidence:
-    - distribution_grid_and_electrical_asset_thermal_operations
-    - industrial_outdoor_asset_maintenance_and_plant_yard_sequencing
-    - EV_charging_and_distributed_energy_asset_thermal_operations
-    - large_venue_or_campus_operational_allocation
-    - energy_building_portfolio_or_campus_cooling_allocation
-    - aviation_ramp_and_ground_operations
+  selection_falsifier: >-
+    If a bounded FortyGuard probe over a hot U.S. test area cannot produce a materially different charging-site ordering/action versus
+    generic city weather, or if equipment evidence cannot support a transparent thermal-headroom model, pivot before deep build work.
 
-  pbpd_checkpoint_1:
-    status: NOT_RUN
-    reason: problem_job_not_selected_and_Gate_0_not_frozen
+  build_claim_boundary:
+    allowed: EXPECTED_THERMAL_DERATING_OR_HEADROOM_UNDER_STATED_EQUIPMENT_CURVE
+    blocked:
+      - observed_real_charger_output_without_telemetry
+      - failure_prediction_without_failure_data
+      - temperature_as_only_driver_of_delivered_power
 
-  exact_next_gate: FORTYGUARD_GATE_0_PROBLEM_LANDSCAPE_AND_COLLISION_MAP
+  current_unknowns:
+    - human checkpoint_1 selection
+    - own FortyGuard API key/plan and real capability proof
+    - exact submission form/handbook requirements
+    - exact GitHub collaborator account
+    - repository naming mismatch
+
+  exact_next_gate: FORTYGUARD_GATE_1_INDEPENDENT_CONCEPT_MECHANISM_DIVERGENCE
+  gate_1_status: BLOCKED_PENDING_HUMAN_PROBLEM_JOB_DECISION
   exact_next_action: >-
-    Deepen evidence for the six unlocked problem families: current problem cost, decision owner, workaround, why generic weather is
-    inadequate, FortyGuard dependency, accessible demo data and current competitor collision. Resolve submission contradictions where
-    possible and obtain our API proof. Freeze Gate 0 before any concept generation. Then capture PBPD 0.5.0 checkpoint 1 first and I23
-    separately before the human problem/job decision.
+    Human selects the problem/job family. Recommended: EV charging-network thermal capacity/derating operations. Once selected, begin
+    independent first-pass concept mechanisms with no cross-exposure between generators, while running the bounded real FortyGuard
+    causality/API probe as the first technical falsification task. Do not converge or lock a concept before divergence and selection.
