@@ -1,0 +1,44 @@
+checkpoint:
+  id: FORTYGUARD_CHECKPOINT_1_PROBLEM_JOB_SELECTION
+  date: 2026-08-23
+  gate_0_status: FROZEN
+  concept_locked: false
+
+  stable_pbpd_0_5_0:
+    captured_first: true
+    recommendation: EV_CHARGING_NETWORK_THERMAL_CAPACITY_AND_DERATING_OPERATIONS
+    runner_up: DISTRIBUTION_GRID_TRANSFORMER_THERMAL_HEADROOM_AND_ASSET_OPERATIONS
+    recommendation_status: RECORDED_BEFORE_I23_SHADOW
+    why:
+      - strongest combined sponsor causality, external causal proof, public asset data, low visible collision and judge-demo clarity
+      - manufacturer documentation provides explicit ambient-temperature derating curves, enabling a deterministic and auditable thermal-capacity model
+      - DOE/NREL AFDC provides current downloadable/API-accessible U.S. charging-station data, avoiding dependence on sensitive or unavailable utility asset/load data
+      - FortyGuard heatmap spatial variation plus exceedance/persistence can change an actual network allocation decision among nearby charging sites
+      - proof can be experienced in 60-90 seconds: nameplate capacity versus heat-adjusted expected capacity, followed by a changed routing/load decision
+      - build risk is materially lower than grid/transformer while maintaining a consequential energy-infrastructure job
+    sponsor_causality_test: PASS_STRONG_IF_LOCAL_DIFFERENTIATION_CHANGES_ALLOCATION
+    sponsor_causality_falsifier: >-
+      If real FortyGuard calls show negligible spatial or persistence differences among candidate charging sites at useful hot periods,
+      or if a generic single-city weather value produces effectively the same ordering/action, the sponsor-causality claim fails.
+    primary_user: CHARGE_POINT_OR_FLEET_CHARGING_OPERATIONS_MANAGER
+    actual_decision: >-
+      Before and during a high-heat window, decide which sites receive charging demand, which nominal charger capacities must be treated
+      as thermally constrained, and which sites require intervention or operational avoidance.
+    proof_boundary:
+      allowed_claim: EXPECTED_THERMAL_DERATING_OR_HEADROOM_UNDER_STATED_MANUFACTURER_CURVE
+      blocked_claims:
+        - observed_real_charger_power_without_telemetry
+        - charger_failure_prediction_without_measured_failure_data
+        - temperature_is_the_only_driver_of_delivered_power
+    runner_up_reason: >-
+      Grid/transformer thermal operations have higher infrastructure consequence and extremely strong FortyGuard commercial alignment,
+      but public operational data and domain-model requirements make a defensible hackathon proof materially harder inside the deadline.
+
+  i23_shadow:
+    status: NOT_RUN_YET
+    anti_contamination: STABLE_RECOMMENDATION_ALREADY_FROZEN
+
+  comparison:
+    material_disagreement: UNRESOLVED_PENDING_I23
+    human_decision: PENDING
+    later_observed_outcome: PENDING
