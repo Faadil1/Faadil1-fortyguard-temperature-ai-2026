@@ -35,10 +35,76 @@ checkpoint:
       but public operational data and domain-model requirements make a defensible hackathon proof materially harder inside the deadline.
 
   i23_shadow:
-    status: NOT_RUN_YET
-    anti_contamination: STABLE_RECOMMENDATION_ALREADY_FROZEN
+    status: COMPLETE
+    contract_used: I23_P01_OUTCOME_INTELLIGENCE_MINIMAL_CANDIDATE_CONTRACT
+    recommendation: EV_CHARGING_NETWORK_THERMAL_CAPACITY_AND_DERATING_OPERATIONS
+    runner_up: DISTRIBUTION_GRID_TRANSFORMER_THERMAL_HEADROOM_AND_ASSET_OPERATIONS
+    activation_reason: >-
+      Multiple procedurally valid problem families differ materially in likely hackathon outcome leverage, distinction, proof quality,
+      sponsor causality, effort and delay cost.
+    intended_outcome: MAXIMIZE_REAL_FORTYGUARD_HACKATHON_WIN_PROBABILITY
+    outcome_leverage:
+      selected_action: EV_CHARGING_NETWORK_THERMAL_CAPACITY_AND_DERATING_OPERATIONS
+      expected_upside: HIGH
+      materiality: HIGH
+      reversibility: MEDIUM
+      information_gain: HIGH
+      effort_cost: MEDIUM
+      delay_cost: LOW_TO_MEDIUM
+      hard_gate_status: PASS_WITH_EMPIRICAL_CAUSALITY_CONDITION
+      causal_hypothesis: >-
+        A low-collision charging-operations product can turn FortyGuard spatial/persistence heat intelligence into a visibly different
+        capacity/allocation decision using external manufacturer derating curves and real AFDC asset data, producing stronger evaluator
+        proof per unit build effort than the higher-domain-risk grid alternative.
+      uncertainty:
+        - real FortyGuard thermal spread among candidate charging sites may be too small to cross or materially change derating bands
+        - manufacturer ambient-temperature curves are equipment-specific and cannot be generalized silently across every station
+        - actual delivered charger power also depends on vehicle, connector, internal thermal controls, utilization and grid constraints
+      falsifier: >-
+        If a bounded FortyGuard probe over a hot U.S. test area cannot produce a materially different station ordering/action than a
+        generic city weather baseline, or if available station/equipment evidence cannot support a transparent thermal-headroom model,
+        do not preserve the mechanism solely for novelty; reconsider the grid runner-up or another frozen family.
+    effort_cutline:
+      decision: CONTINUE
+      next_action: BOUNDED_API_AND_DATA_PROOF_BEFORE_DEEP_BUILD
+      could_change_decision: true
+      information_gain: HIGH
+      marginal_outcome_value: HIGH
+      effort_cost: LOW_TO_MEDIUM
+      delay_cost: LOW
+      reason: >-
+        One bounded proof can invalidate the sponsor-causality premise before expensive architecture/UI work, so it has high expected
+        information value and should precede deep concept/build investment.
+    quality_distinction:
+      target_actor: CHARGE_POINT_OR_FLEET_CHARGING_OPERATIONS_MANAGER
+      evaluator: FORTYGUARD_HACKATHON_JUDGES
+      evaluator_user_difference_material: true
+      dimensions:
+        sponsor_causality: STRONG_IF_PROBED
+        evaluator_legibility: STRONG
+        real_world_decision_value: STRONG
+        technical_auditability: STRONG
+        visible_mechanism_distinction: STRONG
+        evidence_boundary: ADEQUATE_WITH_EQUIPMENT_SPEC_DISCLOSURE
+      distinction_verdict: PROMISING_NOT_YET_PROVEN_UNTIL_API_PROBE
+    protected_invariants:
+      - OUTCOME_NOT_PROXY
+      - NOVELTY_NOT_QUALITY
+      - POLISH_NOT_DISTINCTION
+      - EXPECTED_VALUE_EXPOSES_UNCERTAINTY
+      - HUMAN_FINAL_AUTHORITY
 
   comparison:
-    material_disagreement: UNRESOLVED_PENDING_I23
+    stable_recommendation: EV_CHARGING_NETWORK_THERMAL_CAPACITY_AND_DERATING_OPERATIONS
+    i23_recommendation: EV_CHARGING_NETWORK_THERMAL_CAPACITY_AND_DERATING_OPERATIONS
+    material_disagreement: false
+    preliminary_experiment_grade: TIE
+    why_tie: >-
+      I23 makes the bounded empirical proof gate more explicit, but stable PBPD already recorded the same sponsor-causality falsifier and
+      the same selected problem family. Same decision with more structured explanation does not count as a strict improvement.
     human_decision: PENDING
+    why: PENDING_HUMAN_FINAL_AUTHORITY
+    uncertainty: >-
+      Selection should be treated as conditional on the first real FortyGuard/API data proof; a failed causal probe is grounds for an
+      immediate evidence-driven pivot rather than sunk-cost continuation.
     later_observed_outcome: PENDING
