@@ -1,0 +1,126 @@
+checkpoint:
+  id: FORTYGUARD_CHECKPOINT_3_ARCHITECTURE_SPONSOR_CAUSALITY_PROOF_PATH
+  date: 2026-08-24
+  concept_locked: THERMAL_CAPACITY_DISPATCH_JOB_SCHEDULER
+  status: STABLE_RECOMMENDATION_FROZEN_BEFORE_I23_SHADOW
+
+  stable_pbpd_0_5_0:
+    captured_first: true
+    recommendation: BOUNDED_DETERMINISTIC_THERMAL_DISPATCH_PIPELINE_WITH_KILL_PROBE_FIRST
+    architecture:
+      evidence_capture:
+        role: capture_raw_FortyGuard_activity_and_result_with_query_provenance
+        must_preserve: [activity_id, request_payload, raw_result, capture_timestamp, unit_attestation]
+      site_set:
+        role: small_same-equipment-profile_test_cluster_before_any_network-scale_claim
+        initial_cluster: PHOENIX_ARIZONA
+        initial_hot_day: 2024-07-05
+        rationale: NWS_record_high_118F_day_for_Phoenix
+      equipment_profile_registry:
+        role: explicit_manufacturer_bound_derating_curves_only
+        initial_profile: ABB_TERRA_184_HEAVY_DUTY_SCENARIO_PROFILE
+        profile_binding_rule: >-
+          The profile is a declared scenario/equipment input. A public AFDC station coordinate or power field does not establish that the
+          physical station uses ABB hardware.
+      thermal_mapper:
+        role: map_each_site_to_a_real_FortyGuard_heat_cell_without_interpolation_claims
+      capacity_engine:
+        role: deterministic_expected_thermal_capacity_kw_from_temperature_and_declared_curve
+      baseline_comparator:
+        baselines:
+          - NAMEPLATE_NO_TEMPERATURE
+          - UNIFORM_AOI_TEMPERATURE
+          - OPTIONAL_EXTERNAL_GENERIC_WEATHER_IF_VERIFIED
+        purpose: isolate_hyperlocal_sponsor_value
+      scheduler:
+        role: constrained_assignment_of_energy_jobs_to_sites_or_time_windows
+        initial_implementation: deterministic_not_LLM
+        reason: keep_critical_decision_auditable_and_avoid_generic_agent_collision
+      decision_delta_report:
+        role: explain_exactly_what_changed_between_baseline_and_FortyGuard_and_why
+
+    sponsor_causality_chain:
+      - FortyGuard_hyperlocal_thermal_value
+      - declared_equipment_derating_band
+      - expected_usable_kW
+      - feasibility_or_headroom_change
+      - charging_assignment_or_capacity_ordering_change
+
+    proof_ladder:
+      P0_SCHEMA_DRY_RUN:
+        billable_FortyGuard_calls: 0
+        pass: probe_runs_on_fixture_and_produces_provenance_and_delta_report
+      P1_REAL_TCM_CAPABILITY_AND_UNIT_ATTESTATION:
+        pass: real_response_schema_is_parsed_and_temperature_unit_is_explicitly_attested
+        hard_fail: temperature_unit_cannot_be_resolved_without_guessing
+        note: >-
+          Current official quickstart sources conflict: README describes tcm in Celsius while the current client docstring describes tcm
+          tile readings in Fahrenheit. The probe must not infer the unit from magnitude.
+      P2_SPATIAL_DERATING_DIFFERENTIATION:
+        method: same_declared_equipment_profile_across_sites
+        primary_pass: at_least_two_sites_fall_into_different_documented_derating_bands
+        secondary_pass: material_expected_capacity_spread_is_observed_and_reported_without_overclaiming
+        fail: no_material_thermal_capacity_difference_in_bounded_hot_cluster_test
+      P3_DURATION_CONTEXT_OPTIONAL:
+        method: exceedance_or_persistence_above_declared_Celsius_threshold
+        activation: only_if_it_changes_operational_interpretation_after_P2
+        effort_rule: no_extra_endpoint_for_decoration
+      P4_SCHEDULER_DECISION_DELTA:
+        method: run_a_predeclared_job_sensitivity_set_not_one_cherry_picked_job
+        strong_pass: at_least_one_assignment_or_feasibility_result_changes_for_a_non_degenerate_reason_traceable_to_thermal_capacity
+        weak_result: only_tie_break_order_changes
+        fail: scheduler_decision_is_effectively_identical_to_uniform_baseline
+
+    initial_equipment_evidence:
+      source: ABB_Terra_94_104_124_184_North_America_operation_installation_manual
+      heavy_duty_curve:
+        - {max_temp_c: 40, output_factor: 1.00}
+        - {max_temp_c: 45, output_factor: 0.93}
+        - {max_temp_c: 50, output_factor: 0.80}
+        - {max_temp_c: 55, output_factor: 0.67}
+      above_55C: OUT_OF_DOCUMENTED_RANGE_NO_CAPACITY_INFERENCE
+
+    bounded_call_budget:
+      initial_tcm_completed_calls_max: 3
+      optional_persistence_or_exceedance_calls_max: 1
+      expand_beyond_budget_only_if_result_could_materially_change_go_pivot_decision: true
+
+    protected_claim_boundary:
+      - expected_thermal_capacity_is_derived_not_observed_power
+      - public_station_data_does_not_establish_equipment_model
+      - vehicle_side_limits_grid_limits_and_session_state_are_not_silently_modeled
+      - no_failure_prediction
+      - no_avoided_cost_or_emissions_claim_without_evidence
+
+    architecture_cutline:
+      include_now:
+        - raw_evidence_capture
+        - unit_attestation
+        - thermal_cell_mapping
+        - explicit_derating_profile
+        - baseline_comparator
+        - deterministic_capacity_engine
+        - bounded_scheduler_sensitivity
+      exclude_until_proven_material:
+        - LLM_agent
+        - satellite_segmentation
+        - streetview_segmentation
+        - environmental_parameters
+        - network_scale_database
+        - authentication
+        - notifications
+        - elaborate_UI
+
+    critical_falsifier: >-
+      If the bounded real FortyGuard probe cannot establish a material local thermal-capacity distinction or a defensible operational
+      decision delta versus the uniform/generic baseline, stop Candidate A before deep build and reconsider Candidate B/D or the Gate-0
+      transformer runner-up.
+
+  i23_shadow:
+    status: NOT_RUN_YET
+    anti_contamination: STABLE_ARCHITECTURE_AND_PROOF_PATH_ALREADY_FROZEN
+
+  comparison:
+    material_disagreement: PENDING_I23
+    human_decision: PENDING_GATE_2_ARCHITECTURE_DECISION
+    later_observed_outcome: PENDING
