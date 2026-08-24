@@ -1,0 +1,69 @@
+checkpoint:
+  id: FORTYGUARD_CHECKPOINT_2_CONCEPT_SELECTION
+  date: 2026-08-24
+  problem_job_locked: EV_CHARGING_NETWORK_THERMAL_CAPACITY_AND_DERATING_OPERATIONS
+  divergence_record: research/FORTYGUARD-GATE-1-INDEPENDENT-CONCEPT-MECHANISM-DIVERGENCE.md
+  concept_locked: false
+
+  candidate_mechanisms:
+    A: THERMAL_CAPACITY_DISPATCH_JOB_SCHEDULER
+    B: NETWORK_THERMAL_CAPACITY_RESERVE
+    C: THERMAL_FAULT_TRIAGE_RESIDUAL_ANOMALY
+    D: THERMAL_HARDWARE_FIT_PROCUREMENT
+    E: THERMAL_SLA_QUEUE_TRUTH
+    F: THERMAL_RETROFIT_PRIORITY
+
+  stable_pbpd_0_5_0:
+    captured_first: true
+    status: RECOMMENDATION_FROZEN_BEFORE_I23_SHADOW
+    recommendation: THERMAL_CAPACITY_DISPATCH_JOB_SCHEDULER
+    runner_up: NETWORK_THERMAL_CAPACITY_RESERVE
+    distinctive_outlier_preserved: THERMAL_FAULT_TRIAGE_RESIDUAL_ANOMALY
+    intended_outcome: MAXIMIZE_REAL_FORTYGUARD_HACKATHON_WIN_PROBABILITY
+    why:
+      - turns FortyGuard into an action-changing control input rather than a monitoring layer
+      - strongest 60-90 second before/after proof: the same charging jobs receive different site/time assignments after thermal capacity is applied
+      - can combine real FortyGuard heat, real AFDC station/unit power data and explicit manufacturer derating curves while keeping synthetic/operator-input charging jobs clearly separated
+      - leverages spatial variation, persistence and peak timing; generic city weather is a direct baseline that can falsify sponsor causality
+      - constrained scheduling/optimization gives a substantive AI/decision mechanism without relying on a generic LLM agent
+      - operator value is concrete: preserve vehicle energy deadlines and usable charging throughput during high-heat windows
+      - lower data/evidence risk than fault triage, which requires real OCPP telemetry for its strongest claim
+      - more immediately legible and action-oriented than network reserve, which is strong but more abstract
+      - lower collision than SLA/routing and more causally defensible than retrofit ROI
+    sponsor_causality: STRONG_IF_REAL_PROBE_CHANGES_ASSIGNMENT
+    distinction: STRONG_PROMISING
+    proofability: STRONG
+    real_data_availability: STRONG_FOR_THERMAL_AND_ASSET_LAYERS
+    build_scope: MEDIUM_AND_BOUNDED
+    evidence_boundary:
+      real:
+        - FortyGuard thermal cells/analytics when API proof is captured
+        - AFDC station locations, charging-unit power_kW and port counts where used
+        - manufacturer derating curves explicitly cited and bound to declared equipment profiles
+      operator_or_demo_input:
+        - vehicle charging jobs
+        - equipment identity where AFDC does not provide it
+      derived:
+        - expected_thermal_capacity_kw
+        - job assignment
+        - deadline risk
+        - baseline-versus-thermal decision delta
+      blocked_claims:
+        - actual delivered charging power without charger telemetry
+        - actual queue/wait time without session demand data
+        - universal derating curve across charger models
+        - avoided outage/failure/lives/emissions without evidence
+    critical_falsifier: >-
+      On a bounded real FortyGuard test, if spatial/persistence heat does not alter station thermal-capacity ordering or at least one
+      charging assignment versus a generic city-weather/nameplate baseline, stop before deep build and reconsider Candidate B/D or the
+      Gate-0 grid runner-up.
+    no_frankenstein_merge: true
+
+  i23_shadow:
+    status: NOT_RUN_YET
+    anti_contamination: STABLE_RECOMMENDATION_ALREADY_FROZEN
+
+  comparison:
+    material_disagreement: UNRESOLVED_PENDING_I23
+    human_decision: PENDING
+    later_observed_outcome: PENDING
