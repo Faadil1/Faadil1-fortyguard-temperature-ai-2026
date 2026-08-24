@@ -1,7 +1,7 @@
 canonical_state:
   protocol_version: 1
   project: FORTYGUARD_HACKATHON_26_TEMPERATURE_AI
-  date: 2026-08-23
+  date: 2026-08-24
   source_of_truth: GITHUB_BUILD_REPOSITORY
 
   repository:
@@ -9,7 +9,6 @@ canonical_state:
     active_accessible: Faadil1/Faadil1-fortyguard-temperature-ai-2026
     branch: main
     alignment_status: UNRESOLVED_NAME_MISMATCH
-    requested_repo_probe: HTTP_404
     separation_from_pbpd: ENFORCED
 
   objective:
@@ -23,148 +22,123 @@ canonical_state:
     i23_runtime_integrated: false
     duplicate_product_build: FORBIDDEN
     human_final_authority: true
+    cowork_involved: false
 
-  current_gate:
-    id: FORTYGUARD_GATE_0_PROBLEM_LANDSCAPE_AND_COLLISION_MAP
+  gate_0:
     status: FROZEN
+    landscape_report: research/FORTYGUARD-GATE-0-PROBLEM-LANDSCAPE-AND-COLLISION-MAP.md
     freeze_report: research/FORTYGUARD-GATE-0-FREEZE.md
+
+  locked_problem_job:
+    id: EV_CHARGING_NETWORK_THERMAL_CAPACITY_AND_DERATING_OPERATIONS
+    status: LOCKED_BY_EXPLICIT_USER_GO
+    checkpoint: decisions/CHECKPOINT-1-PROBLEM-JOB-SELECTION.yaml
+    primary_user: CHARGE_POINT_OR_FLEET_CHARGING_OPERATIONS_MANAGER
+    sponsor_causality_condition: >-
+      Preserve only if bounded real FortyGuard evidence can materially change thermal-capacity ordering or an operational action versus
+      generic city weather/nameplate assumptions.
+    runner_up_if_killed: DISTRIBUTION_GRID_TRANSFORMER_THERMAL_HEADROOM_AND_ASSET_OPERATIONS
+
+  gate_1:
+    id: FORTYGUARD_GATE_1_INDEPENDENT_CONCEPT_MECHANISM_DIVERGENCE
+    status: DIVERGENCE_COMPLETE_CHECKPOINT_2_PENDING_HUMAN_DECISION
+    divergence_record: research/FORTYGUARD-GATE-1-INDEPENDENT-CONCEPT-MECHANISM-DIVERGENCE.md
     concept_locked: false
-    problem_job_selected: false
-    concept_generation_allowed: false
+    first_pass_independence_preserved: true
+    generator_selector_separation_preserved: true
+    no_default_frankenstein_merge: true
+    candidate_mechanisms:
+      - THERMAL_CAPACITY_DISPATCH_JOB_SCHEDULER
+      - NETWORK_THERMAL_CAPACITY_RESERVE
+      - THERMAL_FAULT_TRIAGE_RESIDUAL_ANOMALY
+      - THERMAL_HARDWARE_FIT_PROCUREMENT
+      - THERMAL_SLA_QUEUE_TRUTH
+      - THERMAL_RETROFIT_PRIORITY
 
-  rule_state:
-    official_verified:
-      - build_sprint_2026_08_18_to_2026_08_30
-      - project_submission_2026_08_30
-      - judging_2026_09_01_to_2026_09_15
-      - winners_2026_09_16
-      - fully_online_free
-      - teams_1_to_3
-      - Temperature_API_current_US_only_coverage
-    safe_submission_union:
-      - public_repository
-      - working_prototype
-      - public_or_live_demo
-      - demo_video_max_3_minutes
-      - concise_written_summary
-      - explicit_FortyGuard_API_usage_and_measured_result_documentation
-      - judge_collaborator_access
-    unresolved:
-      - exact_live_demo_formal_requirement
-      - exact_current_judging_rubric_source_of_truth
-      - exact_repo_collaborator_account
-      - remaining_non_team_legal_eligibility_exclusions
-
-  technical_landscape:
-    auth: API_KEY_HEADER_api-key
-    async_pattern: POST_RETURNS_ACTIVITY_ID_THEN_GET_STATUS
-    heatmap:
-      endpoint: POST_/v1/heatmap
-      granularity_m: [60, 80, 100]
-      analytic_types: [tcm, time_of_measure, exceedance, persistence]
-      docs_history_floor: 2019-01-01
-      forecast_horizon: PLUS_12_HOURS
-    other_endpoints: [env_params, satellite, streetview, heat_intelligence]
-    documented_plan_limits:
-      basic_monthly_credits: 1000000
-      premium_monthly_credits: 5000000
-      basic_heatmap_max_area_mi2: 10
-      premium_heatmap_max_area_mi2: 50
-    empirical_own_key_proof: PENDING
-    numeric_rate_limit: UNRESOLVED
-    filter_type_4_docs_conflict: UNRESOLVED
-    marketing_resolution_rule: DO_NOT_CLAIM_2M_API_GRID_USE_60_80_100M_CONTRACT
-
-  collision_freeze:
-    saturation_level: HIGH
-    high_collision_mechanisms:
-      - generic_heat_monitor_alert_agent_dashboard
-      - municipal_HVI_resource_dispatch
-      - worker_WBGT_work_rest_voice_SMS
-      - bus_stop_or_transit_heat_prioritization
-      - cool_route_or_fleet_alerting
-      - real_estate_or_parcel_heat_screening
-      - generic_data_center_cooling_copilot
-      - generic_field_ops_threshold_agent
-    targeted_negative_collision_evidence:
-      - no_clearly_documented_FortyGuard_EV_charger_thermal_derating_build_found
-      - no_clearly_documented_FortyGuard_transformer_thermal_headroom_build_found
-      - no_clearly_documented_FortyGuard_aviation_asset_thermal_build_found
-    negative_evidence_is_not_exhaustive: true
-
-  frozen_problem_landscape:
-    finalists:
-      - EV_CHARGING_NETWORK_THERMAL_CAPACITY_AND_DERATING_OPERATIONS
-      - DISTRIBUTION_GRID_TRANSFORMER_THERMAL_HEADROOM_AND_ASSET_OPERATIONS
-    secondary_reserve:
-      - BUILDING_OR_CAMPUS_COOLING_ALLOCATION
-      - INDUSTRIAL_ASSET_RELIABILITY_AND_MAINTENANCE_SEQUENCING
-      - LARGE_VENUE_OR_CAMPUS_OPERATIONAL_ALLOCATION
-    deprioritized:
-      - AVIATION_RAMP_GROUND_OPERATIONS
-      - GENERIC_LOGISTICS_COOL_ROUTING
-      - MUNICIPAL_PUBLIC_HEALTH_COMMAND_CENTER
-      - OUTDOOR_WORKER_ALERTING
-      - TRANSIT_STOP_PRIORITIZATION
-      - REAL_ESTATE_SCREENING
-      - GENERIC_DATA_CENTER_COOLING
-
-  checkpoint_1_problem_job_selection:
-    record: decisions/CHECKPOINT-1-PROBLEM-JOB-SELECTION.yaml
-    stable_captured_first: true
+  checkpoint_1_problem_job:
     stable_recommendation: EV_CHARGING_NETWORK_THERMAL_CAPACITY_AND_DERATING_OPERATIONS
-    i23_shadow_status: COMPLETE
     i23_recommendation: EV_CHARGING_NETWORK_THERMAL_CAPACITY_AND_DERATING_OPERATIONS
     material_disagreement: false
-    preliminary_i23_grade: TIE
+    experiment_grade: TIE
+    human_decision: GO_EV_CHARGING_NETWORK_THERMAL_CAPACITY_AND_DERATING_OPERATIONS
+
+  checkpoint_2_concept_selection:
+    record: decisions/CHECKPOINT-2-CONCEPT-SELECTION.yaml
+    stable_captured_first: true
+    stable_recommendation: THERMAL_CAPACITY_DISPATCH_JOB_SCHEDULER
+    stable_runner_up: NETWORK_THERMAL_CAPACITY_RESERVE
+    distinctive_outlier_preserved: THERMAL_FAULT_TRIAGE_RESIDUAL_ANOMALY
+    i23_status: COMPLETE
+    i23_recommendation: THERMAL_CAPACITY_DISPATCH_JOB_SCHEDULER
+    i23_runner_up: NETWORK_THERMAL_CAPACITY_RESERVE
+    material_disagreement: false
+    preliminary_experiment_grade: TIE
     human_decision: PENDING
-    runner_up: DISTRIBUTION_GRID_TRANSFORMER_THERMAL_HEADROOM_AND_ASSET_OPERATIONS
-    selection_condition: >-
-      Preserve the EV charging problem only if a bounded FortyGuard proof shows local heat/persistence can materially change station
-      thermal-headroom ordering or operational action versus a generic city-weather baseline.
 
-  proof_assets_verified:
-    EV_charging:
-      external_derating_evidence:
-        - ABB_Terra_ambient_temperature_output_derating_curve
-        - Eaton_Green_Motion_temperature_derating
-        - 2026_hot_arid_fast_charger_field_study
-      public_asset_data: DOE_NREL_AFDC_CURRENT_STATION_DATA
-    grid_transformer:
-      external_heat_evidence:
-        - ORNL_persistent_extreme_heat_derating_lifetime_failure
-        - DOE_2024_transformer_resilience_ambient_temperature_and_cooling
-      sponsor_alignment:
-        - FortyGuard_Utility_Companies_case_study
-        - FortyGuard_Smart_Grid_Managers_case_study
-      public_asset_data_risk: HIGHER_THAN_EV
+  selected_candidate_if_human_approved:
+    id: THERMAL_CAPACITY_DISPATCH_JOB_SCHEDULER
+    core_decision: >-
+      Assign charging jobs to sites and time windows using time-indexed expected thermal charging capacity so required vehicle energy is
+      delivered before deadlines during high-heat windows.
+    core_chain:
+      - operator_charging_jobs_and_equipment_profiles
+      - AFDC_real_station_and_charging_unit_power_data_where_applicable
+      - FortyGuard_spatial_temperature_peak_timing_exceedance_persistence
+      - explicit_equipment_specific_derating_curve
+      - expected_thermal_capacity_kw
+      - constrained_job_assignment
+      - baseline_vs_thermal_decision_delta
+    demo_thesis: >-
+      Show the same jobs under nameplate/generic-weather assumptions and under FortyGuard heat intelligence; a judge sees an assignment
+      change caused by thermal capacity and a deadline preserved.
+    evidence_boundary:
+      no_actual_power_claim_without_telemetry: true
+      no_universal_derating_curve: true
+      demo_jobs_must_be_labeled_operator_or_synthetic_input: true
+    critical_falsifier: >-
+      If real FortyGuard data cannot change thermal-capacity ordering or at least one assignment for a defensible hot-area test, stop
+      before deep build and reconsider the runner-up mechanism/problem.
 
-  unknowns:
-    - human_problem_job_decision
-    - our_actual_hackathon_API_key_and_plan
-    - empirical_FortyGuard_schema_units_spatial_spread_and_persistence
+  verified_current_supporting_evidence:
+    FortyGuard:
+      heatmap_granularity_m: [60, 80, 100]
+      analytics: [tcm, time_of_measure, exceedance, persistence]
+      forecast_horizon: PLUS_12_HOURS_DOCS
+    AFDC:
+      current_station_data: true
+      charging_unit_power_kw_field: true
+      charging_unit_port_count_field: true
+      many_network_feeds_daily: true
+    thermal_derating:
+      manufacturer_documentation: VERIFIED
+      extreme_heat_field_evidence: VERIFIED
+    collision:
+      direct_public_FortyGuard_EV_derating_capacity_build_found: false
+      negative_evidence_exhaustive: false
+
+  unresolved:
+    - checkpoint_2_human_concept_decision
+    - own_FortyGuard_API_key_and_empirical_capability_proof
+    - hot_test_cluster_that_produces_material_spatial_or_persistence_delta
+    - exact_demo_equipment_profile_and_derating_curve
     - exact_submission_form_handbook_truth
-    - requested_vs_accessible_repo_name
+    - requested_vs_accessible_repository_name
 
   milestone_history:
-    - milestone: OFFICIAL_RULE_VERIFICATION_INITIAL_PASS
-      status: COMPLETE_WITH_UNRESOLVED_SUBMISSION_CONTRADICTIONS
-    - milestone: TECHNICAL_API_LANDSCAPE_DOC_VERIFICATION
-      status: COMPLETE_API_PROOF_PENDING
-    - milestone: COMPETITIVE_COLLISION_MAP
-      status: COMPLETE_AND_FROZEN_FOR_GATE_0
-    - milestone: PROBLEM_JOB_LANDSCAPE
-      status: FROZEN
-    - milestone: PBPD_I23_CHECKPOINT_1_RECOMMENDATIONS
+    - milestone: GATE_0_LANDSCAPE_FREEZE
+      status: COMPLETE
+    - milestone: CHECKPOINT_1_PROBLEM_JOB_SELECTION
+      status: COMPLETE_HUMAN_GO
+    - milestone: GATE_1_INDEPENDENT_CONCEPT_DIVERGENCE
+      status: COMPLETE
+    - milestone: CHECKPOINT_2_STABLE_AND_I23_RECOMMENDATIONS
       status: COMPLETE_PENDING_HUMAN_DECISION
 
-  exact_next_gate: FORTYGUARD_GATE_1_INDEPENDENT_CONCEPT_MECHANISM_DIVERGENCE
-  gate_1_status: BLOCKED_PENDING_HUMAN_PROBLEM_JOB_DECISION
+  exact_next_gate: FORTYGUARD_CHECKPOINT_2_CONCEPT_SELECTION
   exact_next_action: >-
-    Obtain the human checkpoint-1 decision. Recommended selection is EV_CHARGING_NETWORK_THERMAL_CAPACITY_AND_DERATING_OPERATIONS,
-    with distribution-grid transformer thermal headroom as runner-up. After human selection, begin independent first-pass concept
-    mechanism divergence without exposing generators to one another, while launching the bounded FortyGuard/API causality probe as
-    the first technical falsification task. Do not lock a concept until divergence and selection are complete.
+    Obtain human decision on the recommended THERMAL_CAPACITY_DISPATCH_JOB_SCHEDULER. If approved, lock only that mechanism and move to
+    FORTYGUARD_GATE_2_ARCHITECTURE_SPONSOR_CAUSALITY_AND_PROOF_PATH. First execution task is a bounded real FortyGuard causality probe
+    before deep UI/build work. Do not involve Cowork yet unless architecture/scope is locked or the user explicitly changes that decision.
 
   continuity_protocol:
     canonical_state_replaces_prior_current_state: true
