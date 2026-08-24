@@ -1,12 +1,14 @@
 handover:
   id: FORTYGUARD-HACKATHON-26-HANDOVER
-  date: 2026-08-23
-  status: GATE_0_FROZEN_CHECKPOINT_1_PENDING_HUMAN_DECISION
+  date: 2026-08-24
+  status: GATE_1_DIVERGENCE_COMPLETE_CHECKPOINT_2_PENDING_HUMAN_DECISION
 
   read_first:
     - CANONICAL-STATE.yaml
     - research/FORTYGUARD-GATE-0-FREEZE.md
+    - research/FORTYGUARD-GATE-1-INDEPENDENT-CONCEPT-MECHANISM-DIVERGENCE.md
     - decisions/CHECKPOINT-1-PROBLEM-JOB-SELECTION.yaml
+    - decisions/CHECKPOINT-2-CONCEPT-SELECTION.yaml
 
   repository:
     requested: Faadil1/fortyguard-temperature-ai-2026
@@ -14,68 +16,63 @@ handover:
     branch: main
     mismatch: UNRESOLVED_REQUESTED_REPO_404
 
-  authority:
-    primary_build_system: PBPD_0_5_0_STABLE
-    i23_role: SHADOW_CHALLENGER_ONLY
-    stable_pbpd_mutated: false
-    i23_runtime_integrated: false
-    one_real_product_only: true
-    human_final_authority: true
+  non_negotiables:
+    - actual product stays out of Faadil1/pbpd-cowork-system
+    - PBPD 0.5.0 is primary build system
+    - I23 remains shadow challenger only
+    - stable PBPD not mutated
+    - I23 runtime not integrated
+    - one real product only
+    - human final authority
+    - no default Frankenstein concept merge
+    - Cowork not involved yet
 
-  gate_0:
-    status: FROZEN
+  gate_0: FROZEN
+
+  problem_job:
+    id: EV_CHARGING_NETWORK_THERMAL_CAPACITY_AND_DERATING_OPERATIONS
+    human_decision: GO
+    sponsor_causality_falsifier: >-
+      Kill/pivot if real FortyGuard local heat/persistence cannot materially change thermal-capacity ordering or operational action versus
+      a generic city-weather/nameplate baseline.
+    fallback_problem: DISTRIBUTION_GRID_TRANSFORMER_THERMAL_HEADROOM_AND_ASSET_OPERATIONS
+
+  gate_1:
+    divergence: COMPLETE
     concept_locked: false
-    problem_job_selected: false
-    finalists:
-      - EV_CHARGING_NETWORK_THERMAL_CAPACITY_AND_DERATING_OPERATIONS
-      - DISTRIBUTION_GRID_TRANSFORMER_THERMAL_HEADROOM_AND_ASSET_OPERATIONS
+    candidates:
+      A: THERMAL_CAPACITY_DISPATCH_JOB_SCHEDULER
+      B: NETWORK_THERMAL_CAPACITY_RESERVE
+      C: THERMAL_FAULT_TRIAGE_RESIDUAL_ANOMALY
+      D: THERMAL_HARDWARE_FIT_PROCUREMENT
+      E: THERMAL_SLA_QUEUE_TRUTH
+      F: THERMAL_RETROFIT_PRIORITY
 
-  why_EV_is_current_recommendation:
-    - explicit manufacturer ambient-temperature derating curves create an auditable causal model
-    - DOE_NREL_AFDC supplies current public U.S. charging-station asset data
-    - low visible FortyGuard participant collision in targeted searches
-    - FortyGuard spatial heat plus exceedance/persistence can change network allocation among nearby sites
-    - very strong 60_90_second judge proof
-    - lower data and domain risk than transformer/grid while retaining energy-infrastructure consequence
-
-  why_grid_is_runner_up:
-    - strongest direct FortyGuard commercial alignment with utilities and Smart Grid Managers
-    - strong external evidence that ambient heat affects transformer capacity, aging and failure risk
-    - higher consequence than EV charging
-    - but public asset/load data and defensible model requirements are materially harder inside the remaining build window
-
-  checkpoint_1:
-    stable_recommendation: EV_CHARGING_NETWORK_THERMAL_CAPACITY_AND_DERATING_OPERATIONS
-    stable_captured_before_i23: true
-    i23_recommendation: EV_CHARGING_NETWORK_THERMAL_CAPACITY_AND_DERATING_OPERATIONS
+  checkpoint_2:
+    stable_recommendation: THERMAL_CAPACITY_DISPATCH_JOB_SCHEDULER
+    stable_runner_up: NETWORK_THERMAL_CAPACITY_RESERVE
+    preserved_outlier: THERMAL_FAULT_TRIAGE_RESIDUAL_ANOMALY
+    i23_recommendation: THERMAL_CAPACITY_DISPATCH_JOB_SCHEDULER
+    i23_runner_up: NETWORK_THERMAL_CAPACITY_RESERVE
     material_disagreement: false
-    preliminary_experiment_grade: TIE
+    preliminary_i23_grade: TIE
     human_decision: PENDING
-    i23_note: >-
-      I23 makes the bounded causality probe explicit, but stable already recorded the same falsifier; same decision plus more structure
-      is not a strict improvement.
 
-  selection_falsifier: >-
-    If a bounded FortyGuard probe over a hot U.S. test area cannot produce a materially different charging-site ordering/action versus
-    generic city weather, or if equipment evidence cannot support a transparent thermal-headroom model, pivot before deep build work.
+  recommended_concept_summary: >-
+    Thermal Capacity Dispatch converts FortyGuard heat + persistence/peak timing and explicit equipment derating curves into
+    time-indexed expected charging capacity, then assigns charging jobs to sites/times so energy deadlines survive high-heat windows.
+    The judge proof is a baseline schedule versus a FortyGuard-aware schedule where an assignment changes because local thermal
+    conditions change usable kW.
 
-  build_claim_boundary:
-    allowed: EXPECTED_THERMAL_DERATING_OR_HEADROOM_UNDER_STATED_EQUIPMENT_CURVE
-    blocked:
-      - observed_real_charger_output_without_telemetry
-      - failure_prediction_without_failure_data
-      - temperature_as_only_driver_of_delivered_power
+  supporting_data:
+    FortyGuard: [60_80_100m_heatmap, time_of_measure, exceedance, persistence, plus_12h_forecast_docs]
+    AFDC: [station_locations, charging_unit_power_kw, port_count, current_network_feeds]
+    manufacturer_derating: VERIFIED
+    2026_extreme_heat_fast_charger_field_evidence: VERIFIED
+    direct_visible_FortyGuard_EV_derating_collision: NONE_FOUND_NON_EXHAUSTIVE
 
-  current_unknowns:
-    - human checkpoint_1 selection
-    - own FortyGuard API key/plan and real capability proof
-    - exact submission form/handbook requirements
-    - exact GitHub collaborator account
-    - repository naming mismatch
-
-  exact_next_gate: FORTYGUARD_GATE_1_INDEPENDENT_CONCEPT_MECHANISM_DIVERGENCE
-  gate_1_status: BLOCKED_PENDING_HUMAN_PROBLEM_JOB_DECISION
+  exact_next_gate: FORTYGUARD_CHECKPOINT_2_CONCEPT_SELECTION
   exact_next_action: >-
-    Human selects the problem/job family. Recommended: EV charging-network thermal capacity/derating operations. Once selected, begin
-    independent first-pass concept mechanisms with no cross-exposure between generators, while running the bounded real FortyGuard
-    causality/API probe as the first technical falsification task. Do not converge or lock a concept before divergence and selection.
+    Get the human GO/NO-GO on THERMAL_CAPACITY_DISPATCH_JOB_SCHEDULER. If GO, lock the concept and enter
+    FORTYGUARD_GATE_2_ARCHITECTURE_SPONSOR_CAUSALITY_AND_PROOF_PATH. Build the bounded real FortyGuard causality probe before deep UI or
+    broad implementation. Cowork remains out until architecture/scope is locked unless the user explicitly requests otherwise.
