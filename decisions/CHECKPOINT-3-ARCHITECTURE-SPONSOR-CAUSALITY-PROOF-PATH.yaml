@@ -2,7 +2,7 @@ checkpoint:
   id: FORTYGUARD_CHECKPOINT_3_ARCHITECTURE_SPONSOR_CAUSALITY_PROOF_PATH
   date: 2026-08-24
   concept_locked: THERMAL_CAPACITY_DISPATCH_JOB_SCHEDULER
-  status: STABLE_RECOMMENDATION_RECONCILED_AND_FROZEN_BEFORE_I23_SHADOW
+  status: STABLE_AND_I23_RECOMMENDATIONS_COMPLETE_HUMAN_DECISION_PENDING
 
   stable_pbpd_0_5_0:
     captured_first: true
@@ -20,13 +20,11 @@ checkpoint:
         primary_for_probe: DOE_AFDC_NLR_nearest_stations_API_or_committed_snapshot
         current_domain: developer.nlr.gov
         note: developer.nrel.gov_retired_2026-05-29
-        role: real_EV_charging_locations_and_public_station_metadata
       equipment_profile_registry:
         role: explicit_manufacturer_bound_derating_curves_only
         initial_profile: ABB_TERRA_184_HEAVY_DUTY_SCENARIO_PROFILE
         profile_binding_rule: >-
-          The profile is a declared scenario/equipment input. A public AFDC station coordinate, network, or power field does not establish
-          that the physical station uses ABB hardware.
+          The profile is a declared scenario/equipment input. Public station metadata does not establish the installed equipment model.
       thermal_mapper:
         role: map_each_site_to_a_real_FortyGuard_heat_cell_without_interpolation_claims
       capacity_engine:
@@ -36,43 +34,33 @@ checkpoint:
           - NAMEPLATE_NO_TEMPERATURE
           - UNIFORM_AOI_TEMPERATURE_FOR_HYPERLOCAL_ISOLATION
           - EXTERNAL_GENERIC_WEATHER_FOR_FINAL_ATTRIBUTION_IF_AVAILABLE
-        purpose: isolate_hyperlocal_sponsor_value_without_mislabeling_uniform_FortyGuard_as_external_weather
       scheduler:
         role: constrained_assignment_of_energy_jobs_to_sites_or_time_windows
         initial_implementation: deterministic_not_LLM
-        reason: keep_critical_decision_auditable_and_avoid_generic_agent_collision
       decision_delta_report:
         role: explain_exactly_what_changed_between_baseline_and_FortyGuard_and_why
 
     semantic_compatibility:
       status: STRONGLY_SUPPORTED_BUT_LIVE_RESPONSE_STILL_ATTESTED
       evidence: >-
-        The official quickstart use-case documentation describes env_params temperature as ambient air temperature at the point in Celsius
-        and feeds peak_temp_c derived from the heatmap directly into that ambient-temperature argument. This supports using the heatmap as
-        the environmental variable against an EVSE ambient-temperature derating curve.
+        Official quickstart use-case documentation describes env_params temperature as ambient air temperature and feeds heatmap-derived
+        peak_temp_c into that ambient-temperature argument. This supports comparison with an EVSE ambient-temperature derating curve.
       remaining_boundary: >-
-        Do not claim the API measures charger-internal or connector temperature. Manufacturer documentation also notes connector and EV-side
-        conditions may impose additional limits.
+        FortyGuard heatmap is not charger-internal or connector temperature; manufacturer documentation notes connector and EV-side
+        conditions can impose additional limits.
 
-    unit_and_schema_reconciliation_before_i23:
+    unit_and_schema_reconciliation:
       official_repo_conflict: true
       README_table: tcm_described_as_Celsius
       current_client_docstring: tcm_tile_readings_described_as_Fahrenheit
-      current_use_case_design_spec: cached_hourly_geojson_properties_explicitly_Fahrenheit_then_converted_to_Celsius
-      stable_handling: >-
-        Treat raw TCM as Fahrenheit only when the live response/schema matches the current client/spec contract or an explicit unit field
-        attests it. Preserve raw values and conversion provenance. Never infer units solely from numeric magnitude.
+      current_use_case_design_spec: cached_hourly_geojson_explicitly_Fahrenheit_then_converted_to_Celsius
+      handling: >-
+        Preserve raw values and conversion provenance. Use Fahrenheit only when schema/live evidence matches the current client/spec
+        contract or an explicit unit field attests it. Never infer the unit solely from numeric magnitude.
       live_diurnal_shape: UNRESOLVED
       note: >-
-        Current official use-case design documents a live single-hour call and a cached 24-hour GeoJSON. Therefore the probe must not assume
-        one live call returns all 24 hourly values; it supports hourly-key payloads if present but budgets bounded single-hour calls first.
-
-    sponsor_causality_chain:
-      - FortyGuard_hyperlocal_ambient_thermal_value
-      - declared_equipment_derating_band
-      - expected_usable_kW
-      - feasibility_or_headroom_change
-      - charging_assignment_or_capacity_ordering_change
+        Official use-case design documents a live single-hour call and cached 24-hour GeoJSON, so the probe does not assume one live call
+        returns 24 hours. It supports hourly-key payloads if present but budgets bounded single-hour calls first.
 
     proof_ladder:
       P0_SCHEMA_DRY_RUN:
@@ -85,19 +73,16 @@ checkpoint:
         method: same_declared_equipment_profile_across_sites
         primary_pass: at_least_two_sites_fall_into_different_documented_derating_bands
         secondary_pass: material_expected_capacity_spread_is_observed_and_reported_without_overclaiming
-        fail: no_material_thermal_capacity_difference_in_bounded_hot_cluster_test
       P3_DURATION_CONTEXT_OPTIONAL:
         method: exceedance_or_persistence_above_declared_Celsius_threshold
         activation: only_if_it_changes_operational_interpretation_after_P2
-        effort_rule: no_extra_endpoint_for_decoration
       P4_SCHEDULER_DECISION_DELTA:
         method: run_a_predeclared_job_sensitivity_set_not_one_cherry_picked_job
         strong_pass: at_least_one_assignment_or_feasibility_result_changes_for_a_non_degenerate_reason_traceable_to_thermal_capacity
         weak_result: only_tie_break_order_changes
-        fail: scheduler_decision_is_effectively_identical_to_uniform_baseline
       P5_EXTERNAL_BASELINE_FOR_DEMO:
         activation: required_before_final_sponsor_causality_claim_in_submission_demo_if_feasible
-        source_candidate: NWS_Phoenix_climate_or_observation
+        source_candidate: NWS_Phoenix
         purpose: compare_hyperlocal_FortyGuard_decision_to_a_real_single_location_weather_baseline
 
     initial_equipment_evidence:
@@ -113,46 +98,62 @@ checkpoint:
     bounded_call_budget:
       initial_tcm_completed_calls_max: 3
       optional_persistence_or_exceedance_calls_max: 1
-      expand_beyond_budget_only_if_result_could_materially_change_go_pivot_decision: true
-
-    protected_claim_boundary:
-      - expected_thermal_capacity_is_derived_not_observed_power
-      - public_station_data_does_not_establish_equipment_model
-      - FortyGuard_heatmap_is_not_charger_internal_temperature
-      - vehicle_side_limits_grid_limits_connector_limits_and_session_state_are_not_silently_modeled
-      - no_failure_prediction
-      - no_avoided_cost_or_emissions_claim_without_evidence
 
     architecture_cutline:
-      include_now:
-        - raw_evidence_capture
-        - unit_and_schema_attestation
-        - real_EV_site_coordinates
-        - thermal_cell_mapping
-        - explicit_derating_profile
-        - baseline_comparator
-        - deterministic_capacity_engine
-        - bounded_scheduler_sensitivity
-      exclude_until_proven_material:
-        - LLM_agent
-        - satellite_segmentation
-        - streetview_segmentation
-        - environmental_parameters
-        - network_scale_database
-        - authentication
-        - notifications
-        - elaborate_UI
+      include_now: [raw_evidence_capture, unit_and_schema_attestation, real_EV_site_coordinates, thermal_cell_mapping, explicit_derating_profile, baseline_comparator, deterministic_capacity_engine, bounded_scheduler_sensitivity]
+      exclude_until_proven_material: [LLM_agent, satellite_segmentation, streetview_segmentation, environmental_parameters, network_scale_database, authentication, notifications, elaborate_UI]
 
     critical_falsifier: >-
-      If the bounded real FortyGuard probe cannot establish a material local thermal-capacity distinction or a defensible operational
-      decision delta versus the uniform/external-weather baseline, stop Candidate A before deep build and reconsider Candidate B/D or
-      the Gate-0 transformer runner-up.
+      If bounded real FortyGuard evidence cannot establish a material local thermal-capacity distinction or defensible decision delta,
+      stop Candidate A before deep build.
 
   i23_shadow:
-    status: NOT_RUN_YET
-    anti_contamination: STABLE_ARCHITECTURE_AND_PROOF_PATH_ALREADY_FROZEN
+    status: COMPLETE
+    captured_after_stable: true
+    core_architecture_recommendation: BOUNDED_DETERMINISTIC_THERMAL_DISPATCH_PIPELINE_WITH_KILL_PROBE_FIRST
+    core_architecture_disagreement: false
+    material_new_leverage_found: true
+    new_leverage_move: DUAL_PROOF_MODE_HISTORICAL_CAUSALITY_PLUS_PROSPECTIVE_OPERATIONAL
+    intended_outcome: MAXIMIZE_REAL_FORTYGUARD_HACKATHON_WIN_PROBABILITY
+    outcome_leverage:
+      recommendation: >-
+        Keep the stable kill-probe architecture, but separate proof into two evidence classes: (1) a reproducible historical extreme-heat
+        replay that can be frozen and re-run for causal comparison, and (2) a current/+12-hour operating run demonstrating that the same
+        pipeline can make a forward operational decision. Do not make the prospective run a kill criterion because current weather may
+        not cross a derating band.
+      why_material: >-
+        Historical replay alone can prove the mechanism but leaves an evaluator able to ask whether this is merely retrospective analytics.
+        A bounded prospective mode directly answers product actionability while preserving the historical run as the reproducible evidence
+        artifact. The two modes prove different things and should not be conflated.
+      expected_upside: HIGH
+      materiality: MEDIUM_TO_HIGH
+      reversibility: HIGH
+      information_gain: HIGH
+      effort_cost: LOW_TO_MEDIUM_AFTER_CORE_PROBE
+      delay_cost: LOW
+      hard_gate_status: PASS_AFTER_HISTORICAL_CAUSALITY_PROBE
+      falsifier: >-
+        If the prospective API path materially expands scope, requires unsupported forecast semantics, or threatens submission readiness,
+        keep it as a clearly labeled optional mode and protect the reproducible historical proof.
+    effort_cutline:
+      decision: CONTINUE_CORE_PROBE_FIRST
+      rule: >-
+        Do not spend effort on prospective/live UI until P1/P2 establish the thermal-capacity premise. Add prospective mode only after the
+        core proof passes; it must not delay the build candidate.
+    quality_distinction:
+      evaluator_risk_identified: RETROSPECTIVE_ONLY_PRODUCT_PERCEPTION
+      mitigation: DUAL_PROOF_MODE
+      distinction_verdict: MATERIAL_PROOF_PATH_IMPROVEMENT_IF_ADOPTED
 
   comparison:
-    material_disagreement: PENDING_I23
+    stable_recommendation: BOUNDED_DETERMINISTIC_THERMAL_DISPATCH_PIPELINE_WITH_KILL_PROBE_FIRST
+    i23_recommendation: SAME_CORE_PLUS_DUAL_HISTORICAL_AND_PROSPECTIVE_PROOF_MODES
+    architecture_material_disagreement: false
+    proof_path_material_disagreement: true
+    material_disagreement: true
+    preliminary_experiment_grade: STRICT_IMPROVEMENT_CANDIDATE
+    why_not_final_yet: >-
+      I23 identified a proof-path risk and leverage move not explicitly required by stable PBPD. It counts as a candidate strict improvement
+      only if the human accepts it and it survives effort/readiness constraints; external hackathon outcome evidence remains pending.
     human_decision: PENDING_GATE_2_ARCHITECTURE_DECISION
     later_observed_outcome: PENDING
