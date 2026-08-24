@@ -3,7 +3,7 @@ checkpoint:
   date: 2026-08-24
   problem_job_locked: EV_CHARGING_NETWORK_THERMAL_CAPACITY_AND_DERATING_OPERATIONS
   divergence_record: research/FORTYGUARD-GATE-1-INDEPENDENT-CONCEPT-MECHANISM-DIVERGENCE.md
-  concept_locked: false
+  concept_locked: true
 
   candidate_mechanisms:
     A: THERMAL_CAPACITY_DISPATCH_JOB_SCHEDULER
@@ -15,97 +15,50 @@ checkpoint:
 
   stable_pbpd_0_5_0:
     captured_first: true
-    status: RECOMMENDATION_FROZEN_BEFORE_I23_SHADOW
     recommendation: THERMAL_CAPACITY_DISPATCH_JOB_SCHEDULER
     runner_up: NETWORK_THERMAL_CAPACITY_RESERVE
     distinctive_outlier_preserved: THERMAL_FAULT_TRIAGE_RESIDUAL_ANOMALY
-    intended_outcome: MAXIMIZE_REAL_FORTYGUARD_HACKATHON_WIN_PROBABILITY
-    why:
-      - FortyGuard changes the operational action, not just the visualization
-      - strongest 60-90 second before/after proof: identical charging jobs receive different site/time assignments after thermal capacity is applied
-      - supports a high-integrity stack of real FortyGuard heat, real AFDC station/unit power data and explicit manufacturer derating curves
-      - leverages spatial variation, persistence and peak timing; generic city weather is a direct falsifying baseline
-      - constrained scheduling/optimization is a substantive decision mechanism without generic-agent collision
-      - lower evidence risk than fault triage, which needs real OCPP telemetry for its strongest claim
-      - more immediately legible/action-oriented than aggregate network reserve
-      - lower collision than SLA/routing and more defensible than retrofit-ROI claims
-    sponsor_causality: STRONG_IF_REAL_PROBE_CHANGES_ASSIGNMENT
-    distinction: STRONG_PROMISING
-    proofability: STRONG
-    real_data_availability: STRONG_FOR_THERMAL_AND_ASSET_LAYERS
-    build_scope: MEDIUM_AND_BOUNDED
-    evidence_boundary:
-      real:
-        - FortyGuard thermal cells/analytics after API proof
-        - AFDC station locations, charging-unit power_kW and port counts where used
-        - manufacturer derating curves bound only to declared equipment profiles
-      operator_or_demo_input:
-        - vehicle charging jobs
-        - equipment identity where not present in AFDC
-      derived:
-        - expected_thermal_capacity_kw
-        - job assignment
-        - deadline risk
-        - baseline_versus_thermal_decision_delta
-      blocked_claims:
-        - actual delivered charging power without charger telemetry
-        - actual queue/wait time without demand/session data
-        - universal derating curve across charger models
-        - avoided outage/failure/lives/emissions without evidence
+    sponsor_causality: STRONG_IF_REAL_PROBE_CHANGES_CAPACITY_OR_ASSIGNMENT
     critical_falsifier: >-
-      If a bounded real FortyGuard test does not alter station thermal-capacity ordering or at least one charging assignment versus a
-      generic city-weather/nameplate baseline, stop before deep build and reconsider Candidate B/D or the Gate-0 grid runner-up.
-    no_frankenstein_merge: true
+      If bounded real FortyGuard evidence cannot create a material local thermal-capacity difference, capacity-ordering difference,
+      or defensible assignment change versus a uniform/generic-weather baseline, stop before deep build and reconsider the runner-up.
 
   i23_shadow:
-    status: COMPLETE
     captured_after_stable: true
     recommendation: THERMAL_CAPACITY_DISPATCH_JOB_SCHEDULER
     runner_up: NETWORK_THERMAL_CAPACITY_RESERVE
-    intended_outcome: MAXIMIZE_REAL_FORTYGUARD_HACKATHON_WIN_PROBABILITY
-    outcome_leverage:
-      expected_upside: HIGH
-      materiality: HIGH
-      reversibility: MEDIUM
-      information_gain: HIGH
-      effort_cost: MEDIUM
-      delay_cost: MEDIUM
-      hard_gate_status: PASS_WITH_EMPIRICAL_SPONSOR_CAUSALITY_CONDITION
-      causal_hypothesis: >-
-        The dispatch mechanism creates the clearest evaluator-visible causal chain from FortyGuard hyperlocal/persistent heat to
-        equipment-specific usable capacity to a changed charging decision, while remaining buildable and auditable before the deadline.
-      uncertainty:
-        - spatial thermal spread may not cross meaningful derating bands in the selected test cluster
-        - charger equipment identity is not guaranteed by AFDC network metadata
-        - synthetic/operator-input jobs reduce external outcome proof but are legitimate product inputs if clearly labeled
-      falsifier: >-
-        If the bounded causality probe does not change an assignment, or only changes it through arbitrary job assumptions rather than
-        FortyGuard thermal differentiation, do not preserve Candidate A solely because it is polished or easy to explain.
-    effort_cutline:
-      decision: CONTINUE
-      next_action: BUILD_BOUNDED_CAUSALITY_PROBE_BEFORE_UI_ARCHITECTURE
-      could_change_decision: true
-      information_gain: HIGH
-      marginal_outcome_value: HIGH
-      effort_cost: LOW_TO_MEDIUM
-      delay_cost: LOW
-    quality_distinction:
-      sponsor_causality: STRONG_IF_PROBED
-      evaluator_legibility: STRONG
-      technical_auditability: STRONG
-      business_relevance: STRONG
-      innovation: STRONG_PROMISING
-      collision: LOW_TO_MEDIUM
-      distinction_verdict: BEST_CURRENT_MECHANISM_NOT_YET_HUMAN_LOCKED
     material_new_leverage_found: false
 
   comparison:
     stable_recommendation: THERMAL_CAPACITY_DISPATCH_JOB_SCHEDULER
     i23_recommendation: THERMAL_CAPACITY_DISPATCH_JOB_SCHEDULER
     material_disagreement: false
-    preliminary_experiment_grade: TIE
-    why_tie: >-
-      Both recommend the same mechanism and the same bounded FortyGuard causality falsifier. I23 adds structure but did not identify a
-      materially better selection, risk, cutline or leverage move that stable PBPD missed.
-    human_decision: PENDING
-    later_observed_outcome: PENDING
+    experiment_grade: TIE
+
+  human_decision:
+    status: GO
+    decision: LOCK_THERMAL_CAPACITY_DISPATCH_JOB_SCHEDULER
+    source: explicit_user_go_2026-08-24
+    why: >-
+      User accepted the recommended Candidate A and authorized continuation to Gate 2. This locks only the concept mechanism; evidence
+      boundaries and the bounded sponsor-causality falsifier remain active and can still force a pivot.
+
+  selected_concept:
+    id: THERMAL_CAPACITY_DISPATCH_JOB_SCHEDULER
+    primary_user: CHARGE_POINT_OR_FLEET_CHARGING_OPERATIONS_MANAGER
+    core_chain:
+      - operator_charging_jobs_and_equipment_profiles
+      - real_station_or_site_locations
+      - FortyGuard_hyperlocal_temperature_and_temporal_analytics
+      - declared_equipment_specific_derating_curve
+      - expected_thermal_capacity_kw
+      - constrained_job_assignment
+      - baseline_vs_thermal_decision_delta
+    evidence_boundary:
+      no_actual_power_claim_without_telemetry: true
+      no_universal_derating_curve: true
+      demo_jobs_must_be_labeled_operator_or_synthetic_input: true
+      public_station_location_does_not_imply_equipment_identity: true
+
+  next_gate: FORTYGUARD_GATE_2_ARCHITECTURE_SPONSOR_CAUSALITY_AND_PROOF_PATH
+  later_observed_outcome: PENDING
