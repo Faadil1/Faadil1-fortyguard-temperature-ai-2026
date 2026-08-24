@@ -1,110 +1,66 @@
 checkpoint:
   id: FORTYGUARD_CHECKPOINT_1_PROBLEM_JOB_SELECTION
-  date: 2026-08-23
+  date_opened: 2026-08-23
+  date_human_decision: 2026-08-24
   gate_0_status: FROZEN
   concept_locked: false
+
+  decision_context:
+    intended_outcome: MAXIMIZE_REAL_FORTYGUARD_HACKATHON_WIN_PROBABILITY
+    finalists:
+      - EV_CHARGING_NETWORK_THERMAL_CAPACITY_AND_DERATING_OPERATIONS
+      - DISTRIBUTION_GRID_TRANSFORMER_THERMAL_HEADROOM_AND_ASSET_OPERATIONS
 
   stable_pbpd_0_5_0:
     captured_first: true
     recommendation: EV_CHARGING_NETWORK_THERMAL_CAPACITY_AND_DERATING_OPERATIONS
     runner_up: DISTRIBUTION_GRID_TRANSFORMER_THERMAL_HEADROOM_AND_ASSET_OPERATIONS
-    recommendation_status: RECORDED_BEFORE_I23_SHADOW
-    why:
-      - strongest combined sponsor causality, external causal proof, public asset data, low visible collision and judge-demo clarity
-      - manufacturer documentation provides explicit ambient-temperature derating curves, enabling a deterministic and auditable thermal-capacity model
-      - DOE/NREL AFDC provides current downloadable/API-accessible U.S. charging-station data, avoiding dependence on sensitive or unavailable utility asset/load data
-      - FortyGuard heatmap spatial variation plus exceedance/persistence can change an actual network allocation decision among nearby charging sites
-      - proof can be experienced in 60-90 seconds: nameplate capacity versus heat-adjusted expected capacity, followed by a changed routing/load decision
-      - build risk is materially lower than grid/transformer while maintaining a consequential energy-infrastructure job
     sponsor_causality_test: PASS_STRONG_IF_LOCAL_DIFFERENTIATION_CHANGES_ALLOCATION
-    sponsor_causality_falsifier: >-
-      If real FortyGuard calls show negligible spatial or persistence differences among candidate charging sites at useful hot periods,
-      or if a generic single-city weather value produces effectively the same ordering/action, the sponsor-causality claim fails.
     primary_user: CHARGE_POINT_OR_FLEET_CHARGING_OPERATIONS_MANAGER
     actual_decision: >-
       Before and during a high-heat window, decide which sites receive charging demand, which nominal charger capacities must be treated
       as thermally constrained, and which sites require intervention or operational avoidance.
+    why:
+      - manufacturer evidence provides explicit ambient-temperature derating behavior
+      - DOE/NREL AFDC provides current U.S. charging-station and EV charging-unit data, including power_kW and port counts
+      - FortyGuard spatial temperature plus exceedance/persistence can change actual capacity/allocation decisions
+      - 60-90 second proof can show nameplate versus modeled thermal capacity and a changed operational action
+      - substantially lower proof/data risk than transformer operations inside the hackathon deadline
     proof_boundary:
-      allowed_claim: EXPECTED_THERMAL_DERATING_OR_HEADROOM_UNDER_STATED_MANUFACTURER_CURVE
+      allowed_claim: EXPECTED_THERMAL_DERATING_OR_HEADROOM_UNDER_STATED_EQUIPMENT_CURVE
       blocked_claims:
         - observed_real_charger_power_without_telemetry
         - charger_failure_prediction_without_measured_failure_data
         - temperature_is_the_only_driver_of_delivered_power
-    runner_up_reason: >-
-      Grid/transformer thermal operations have higher infrastructure consequence and extremely strong FortyGuard commercial alignment,
-      but public operational data and domain-model requirements make a defensible hackathon proof materially harder inside the deadline.
+    falsifier: >-
+      If real FortyGuard calls show negligible spatial/persistence differences among useful candidate sites, or generic city weather
+      produces effectively the same ordering/action, sponsor causality fails and the direction must be reconsidered.
 
   i23_shadow:
+    captured_after_stable: true
     status: COMPLETE
-    contract_used: I23_P01_OUTCOME_INTELLIGENCE_MINIMAL_CANDIDATE_CONTRACT
     recommendation: EV_CHARGING_NETWORK_THERMAL_CAPACITY_AND_DERATING_OPERATIONS
     runner_up: DISTRIBUTION_GRID_TRANSFORMER_THERMAL_HEADROOM_AND_ASSET_OPERATIONS
-    activation_reason: >-
-      Multiple procedurally valid problem families differ materially in likely hackathon outcome leverage, distinction, proof quality,
-      sponsor causality, effort and delay cost.
-    intended_outcome: MAXIMIZE_REAL_FORTYGUARD_HACKATHON_WIN_PROBABILITY
-    outcome_leverage:
-      selected_action: EV_CHARGING_NETWORK_THERMAL_CAPACITY_AND_DERATING_OPERATIONS
-      expected_upside: HIGH
-      materiality: HIGH
-      reversibility: MEDIUM
-      information_gain: HIGH
-      effort_cost: MEDIUM
-      delay_cost: LOW_TO_MEDIUM
-      hard_gate_status: PASS_WITH_EMPIRICAL_CAUSALITY_CONDITION
-      causal_hypothesis: >-
-        A low-collision charging-operations product can turn FortyGuard spatial/persistence heat intelligence into a visibly different
-        capacity/allocation decision using external manufacturer derating curves and real AFDC asset data, producing stronger evaluator
-        proof per unit build effort than the higher-domain-risk grid alternative.
-      uncertainty:
-        - real FortyGuard thermal spread among candidate charging sites may be too small to cross or materially change derating bands
-        - manufacturer ambient-temperature curves are equipment-specific and cannot be generalized silently across every station
-        - actual delivered charger power also depends on vehicle, connector, internal thermal controls, utilization and grid constraints
-      falsifier: >-
-        If a bounded FortyGuard probe over a hot U.S. test area cannot produce a materially different station ordering/action than a
-        generic city weather baseline, or if available station/equipment evidence cannot support a transparent thermal-headroom model,
-        do not preserve the mechanism solely for novelty; reconsider the grid runner-up or another frozen family.
-    effort_cutline:
-      decision: CONTINUE
-      next_action: BOUNDED_API_AND_DATA_PROOF_BEFORE_DEEP_BUILD
-      could_change_decision: true
-      information_gain: HIGH
-      marginal_outcome_value: HIGH
-      effort_cost: LOW_TO_MEDIUM
-      delay_cost: LOW
-      reason: >-
-        One bounded proof can invalidate the sponsor-causality premise before expensive architecture/UI work, so it has high expected
-        information value and should precede deep concept/build investment.
-    quality_distinction:
-      target_actor: CHARGE_POINT_OR_FLEET_CHARGING_OPERATIONS_MANAGER
-      evaluator: FORTYGUARD_HACKATHON_JUDGES
-      evaluator_user_difference_material: true
-      dimensions:
-        sponsor_causality: STRONG_IF_PROBED
-        evaluator_legibility: STRONG
-        real_world_decision_value: STRONG
-        technical_auditability: STRONG
-        visible_mechanism_distinction: STRONG
-        evidence_boundary: ADEQUATE_WITH_EQUIPMENT_SPEC_DISCLOSURE
-      distinction_verdict: PROMISING_NOT_YET_PROVEN_UNTIL_API_PROBE
-    protected_invariants:
-      - OUTCOME_NOT_PROXY
-      - NOVELTY_NOT_QUALITY
-      - POLISH_NOT_DISTINCTION
-      - EXPECTED_VALUE_EXPOSES_UNCERTAINTY
-      - HUMAN_FINAL_AUTHORITY
+    material_new_leverage_found: false
+    useful_emphasis: BOUNDED_API_AND_DATA_PROOF_BEFORE_DEEP_BUILD
+    why_no_strict_improvement: >-
+      I23 made the empirical proof gate more explicit, but stable PBPD had already selected the same family and recorded the same
+      sponsor-causality falsifier. Same decision with more structured explanation is a tie.
 
   comparison:
     stable_recommendation: EV_CHARGING_NETWORK_THERMAL_CAPACITY_AND_DERATING_OPERATIONS
     i23_recommendation: EV_CHARGING_NETWORK_THERMAL_CAPACITY_AND_DERATING_OPERATIONS
     material_disagreement: false
-    preliminary_experiment_grade: TIE
-    why_tie: >-
-      I23 makes the bounded empirical proof gate more explicit, but stable PBPD already recorded the same sponsor-causality falsifier and
-      the same selected problem family. Same decision with more structured explanation does not count as a strict improvement.
-    human_decision: PENDING
-    why: PENDING_HUMAN_FINAL_AUTHORITY
-    uncertainty: >-
-      Selection should be treated as conditional on the first real FortyGuard/API data proof; a failed causal probe is grounds for an
-      immediate evidence-driven pivot rather than sunk-cost continuation.
-    later_observed_outcome: PENDING
+    experiment_grade: TIE
+
+  human_decision:
+    decision: GO_EV_CHARGING_NETWORK_THERMAL_CAPACITY_AND_DERATING_OPERATIONS
+    authority: EXPLICIT_USER_GO
+    status: LOCKED_PROBLEM_JOB
+    why: >-
+      User approved proceeding after the stable/I23 recommendations were presented. Approval locks the problem/job, not a product concept.
+    condition_preserved: >-
+      The first bounded FortyGuard causality probe remains allowed to kill/pivot the direction if local thermal intelligence does not
+      materially change an operational decision versus a generic weather baseline.
+
+  later_observed_outcome: PENDING
