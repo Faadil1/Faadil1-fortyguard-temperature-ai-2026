@@ -15,6 +15,22 @@ canonical_state:
     primary: MAXIMIZE_REAL_HACKATHON_WIN_PROBABILITY
     experiment_secondary: true
 
+  registration_and_api_access_2026_08_28:
+    form_submission_status: FAILED_CLIENT_SIDE_REQUEST_DID_NOT_REACH_SERVER
+    organizer_manual_registration_instruction: hackathon@fortyguard.com
+    manual_registration_request_status: SENT_BY_HUMAN
+    manual_registration_request_date: 2026-08-28
+    requested_in_email:
+      - manual_hackathon_registration
+      - hackathon_API_access_instructions
+      - FORTYGUARD_API_KEY_access
+    organizer_response_status: PENDING
+    registration_confirmation_status: PENDING
+    api_access_status: PENDING_ORGANIZER_RESPONSE
+    api_key_status: NOT_YET_RECEIVED
+    eligibility_effect: DOES_NOT_RESOLVE_QUEBEC_CANADA_YET
+    security_rule: NEVER_PASTE_OR_COMMIT_API_KEY
+
   authority:
     primary_build_system: PBPD_0_5_0_STABLE
     i23_role: SHADOW_CHALLENGER_ONLY
@@ -170,7 +186,8 @@ canonical_state:
 
   build_cutline:
     do_now:
-      - configure_FORTYGUARD_API_KEY_as_repository_Actions_secret
+      - wait_for_manual_registration_and_API_access_response
+      - configure_FORTYGUARD_API_KEY_as_repository_Actions_secret_when_received
       - dispatch_Gate_2_Live_Causality_Probe_workflow
       - preserve_raw_response_activity_ids_and_schema_attestation
       - stop_early_on_strong_pass_or_clear_fail
@@ -185,6 +202,8 @@ canonical_state:
       - terminal_packaging
 
   current_blockers:
+    - manual_hackathon_registration_confirmation_pending
+    - FortyGuard_API_access_or_API_key_pending_organizer_response
     - FORTYGUARD_API_KEY_not_configured_as_GitHub_Actions_repository_secret
     - Canada_Quebec_eligibility_unresolved_in_official_rules
     - requested_vs_accessible_repository_name
@@ -202,15 +221,17 @@ canonical_state:
     - {milestone: GATE_2_SECURE_GITHUB_ACTIONS_RUNNER, status: PASS_PROMOTED_PR_1}
     - {milestone: GATE_2_FIXTURE_EXECUTION, status: PASS_STRONG_SYNTHETIC_ONLY}
     - {milestone: HOI_WINNER_COMPETITOR_INTELLIGENCE, status: COMPLETE_KEEP_CONCEPT}
+    - {milestone: MANUAL_HACKATHON_REGISTRATION_REQUEST, status: SENT_API_ACCESS_PENDING}
 
   exact_next_gate: FORTYGUARD_GATE_2_REAL_CAUSALITY_PROBE_EXECUTION
   exact_next_owner: PBPD
   exact_next_action: >-
-    Configure repository Actions secret FORTYGUARD_API_KEY in Faadil1/Faadil1-fortyguard-temperature-ai-2026, then manually run the
-    `Gate 2 Live Causality Probe` workflow on main. Review the private artifact before committing any real evidence. Require P1 schema/unit
-    attestation, then classify PASS_STRONG / PASS_THERMAL_DIFFERENTIATION_ONLY / FAIL. If strong pass, freeze the proof path and decide on
-    I23 prospective current/+12h mode. If fail, stop deep build and pivot to preserved alternatives. Canada/Quebec eligibility remains a
-    separate terminal-readiness blocker and must be resolved before SUBMISSION_READY.
+    Wait for FortyGuard's response to the manual registration/API-access request. Once the API key or access path is provided, configure
+    repository Actions secret FORTYGUARD_API_KEY in Faadil1/Faadil1-fortyguard-temperature-ai-2026, then manually run the `Gate 2 Live
+    Causality Probe` workflow on main. Review the private artifact before committing any real evidence. Require P1 schema/unit attestation,
+    then classify PASS_STRONG / PASS_THERMAL_DIFFERENTIATION_ONLY / FAIL. If strong pass, freeze the proof path and decide on I23 prospective
+    current/+12h mode. If fail, stop deep build and pivot to preserved alternatives. Canada/Quebec eligibility remains a separate
+    terminal-readiness blocker and must be resolved before SUBMISSION_READY.
 
   continuity_protocol:
     canonical_state_replaces_prior_current_state: true
