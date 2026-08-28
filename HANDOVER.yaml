@@ -1,13 +1,18 @@
 handover:
   id: FORTYGUARD-HACKATHON-26-HANDOVER
-  date: 2026-08-24
-  status: GATE_2_PROBE_READY_REAL_API_EXECUTION_BLOCKED
+  date: 2026-08-28
+  status: GATE_2_SECURE_RUNNER_READY_LIVE_BLOCKED_MISSING_SECRET
+
+  resume_rule: >-
+    Read CANONICAL-STATE.yaml first, then this HANDOVER.yaml. Do not reconstruct FortyGuard state from chat when these canonical files exist.
 
   read_first:
     - CANONICAL-STATE.yaml
+    - research/FORTYGUARD-HOI-WINNER-COMPETITOR-INTELLIGENCE-2026-08-28.md
     - decisions/CHECKPOINT-3-ARCHITECTURE-SPONSOR-CAUSALITY-PROOF-PATH.yaml
     - probe/README.md
     - probe/thermal_causality_probe.py
+    - .github/workflows/gate2-live-causality-probe.yml
     - decisions/CHECKPOINT-2-CONCEPT-SELECTION.yaml
 
   repository:
@@ -26,7 +31,9 @@ handover:
     - human final authority
     - no default Frankenstein merge
     - Cowork still not involved
-    - no API key committed or pasted into repository
+    - no API key committed or pasted into repository or chat
+    - fixture evidence never counts as sponsor causality evidence
+    - no terminal submission-readiness while Canada/Quebec eligibility remains unresolved
 
   locked_problem_job:
     id: EV_CHARGING_NETWORK_THERMAL_CAPACITY_AND_DERATING_OPERATIONS
@@ -36,12 +43,40 @@ handover:
   locked_concept:
     id: THERMAL_CAPACITY_DISPATCH_JOB_SCHEDULER
     human_decision: GO
+    current_decision: KEEP_LOCKED_CONCEPT_PENDING_LIVE_PROBE
     core_claim: >-
       Hyperlocal ambient temperature changes expected usable charger capacity under a declared equipment-specific derating curve, which
       can change feasible charging-site/time assignments.
 
+  hoi_intelligence:
+    status: COMPLETE
+    artifact: research/FORTYGUARD-HOI-WINNER-COMPETITOR-INTELLIGENCE-2026-08-28.md
+    artifact_blob: 0ef2c4d60625fa12b4a2abbfa5396b0a5a825354
+    eligibility:
+      status: UNRESOLVED_QUEBEC_CANADA
+      supporting_signal: organizer_describes_event_as_global_virtual_online_free
+      explicit_Canada_or_Quebec_territory_rule_found: false
+      terminal_effect: BLOCK_SUBMISSION_READY_IF_UNRESOLVED
+    winner_intelligence:
+      same_event_prior_winner_corpus: NONE_FIRST_OWN_FORTYGUARD_HACKATHON
+      proxy_winner: CARE_CAST_HEALTH_IN_CLIMATE_NYC_2025_FIRST_PLACE
+      reusable_pattern: PRECISE_PROBLEM_REAL_LOCAL_DATA_ACTION_LOW_FRICTION_CREDIBLE_IMPACT_CLEAR_PRESENTATION
+    competitor_intelligence:
+      bounded_public_scan: COMPLETE
+      visible_saturated_surfaces:
+        - generic_heat_risk_alerts
+        - worker_or_rider_heat_routing
+        - generic_agentic_temperature_advisors
+        - solar_farm_thermal_optimization
+        - data_center_cooling
+        - broad_heat_dashboards
+      public_EV_charging_derating_dispatch_collision_found: false
+      interpretation: PLAUSIBLY_UNDEROCCUPIED_NOT_PROOF_OF_ZERO_COMPETITORS
+    decision: KEEP_LOCKED_CONCEPT_PENDING_LIVE_PROBE
+    deep_build_authorized_by_HOI: false
+
   gate_2:
-    status: CORE_ARCHITECTURE_AND_KILL_PROBE_READY
+    status: SECURE_RUNNER_PROMOTED_REAL_API_EXECUTION_BLOCKED_MISSING_SECRET
     stable_architecture: BOUNDED_DETERMINISTIC_THERMAL_DISPATCH_PIPELINE_WITH_KILL_PROBE_FIRST
     architecture_components:
       - raw FortyGuard evidence/activity capture
@@ -53,7 +88,50 @@ handover:
       - deterministic job sensitivity/scheduler
       - decision-delta report
 
-  first_probe:
+  secure_runner:
+    workflow: .github/workflows/gate2-live-causality-probe.yml
+    pull_request: 1
+    merge_sha: 5d46fbf35b514523cb0e8d872b6e8c876d4767b6
+    initial_diagnostic_run:
+      run_id: 33192204988
+      fixture: PASS
+      secret_check: MISSING
+      live_probe: SKIPPED_FAIL_CLOSED
+      artifact_id: 9694211230
+    validated_runner_run:
+      run_id: 33192478438
+      overall: PASS
+      fixture: PASS
+      secret_detection: PASS
+      live_probe: BLOCKED_MISSING_FORTYGUARD_API_KEY
+      blocked_state_recorded: true
+      artifact_upload: PASS
+      artifact_id: 9694323344
+      artifact_digest: sha256:6cd864f66ea47157cf9f2c92809cb512882b0cff31a27d7bf48a485eb8638ae5
+      artifact_expiry: 2026-09-04T16:58:25Z
+    behavior:
+      secret_source: GitHub_Actions_repository_secret_only
+      key_printed: false
+      key_committed: false
+      live_evidence_auto_committed: false
+      private_artifact_retention_days: 7
+      workflow_dispatch_available: true
+
+  fixture_probe:
+    evidence_class: SYNTHETIC_FIXTURE_PIPELINE_TEST_ONLY
+    verdict: PASS_STRONG
+    sponsor_evidence: false
+    metrics:
+      local_temperature_spread_c: 13.0
+      documented_derating_bands_represented: 4
+      expected_capacity_spread_kw: 49.5
+      expected_capacity_spread_percent_nameplate: 33.0
+      predeclared_job_cases_with_feasible_set_change: 5
+    interpretation: >-
+      The deterministic pipeline can detect a strong thermal decision delta when one exists. This validates mechanics only; the selected
+      concept remains unproven until the same causal chain is supported by real FortyGuard output.
+
+  first_live_probe:
     code: probe/thermal_causality_probe.py
     runbook: probe/README.md
     cluster: Phoenix_AZ
@@ -64,13 +142,18 @@ handover:
     same_profile_across_sites: true
     real_station_source: DOE_AFDC_NLR
     AFDC_domain: developer.nlr.gov
-    real_execution: BLOCKED_MISSING_FORTYGUARD_API_KEY_IN_AVAILABLE_RUNTIME
-    fixture_mode: PIPELINE_TEST_ONLY_NOT_SPONSOR_EVIDENCE
+    real_execution: BLOCKED_MISSING_FORTYGUARD_API_KEY_GITHUB_ACTIONS_SECRET
 
   proof_logic:
-    P1: real schema and temperature unit must be attested without numeric guessing
-    P2: prefer at least two sites in different documented derating bands
-    P4: predeclared one-hour job sensitivity must show a non-tie feasible-site-set change for strong pass
+    P0_fixture_pipeline: PASS_STRONG_SYNTHETIC_ONLY
+    P1_real_schema_and_unit: BLOCKED_MISSING_API_KEY
+    P2_spatial_derating_differentiation: PENDING
+    P3_duration_context_optional: PENDING
+    P4_scheduler_decision_delta: PENDING
+    P5_external_weather_baseline_for_final_demo: PENDING
+    strong_pass: >-
+      Multiple documented derating bands plus at least one predeclared one-hour charging job whose feasible-site set changes under the
+      FortyGuard hyperlocal field versus the uniform AOI baseline.
     fail_action: STOP_DEEP_BUILD_AND_RECONSIDER_PRESERVED_ALTERNATIVES
 
   evidence_boundaries:
@@ -101,8 +184,56 @@ handover:
     preliminary_I23_grade: STRICT_IMPROVEMENT_CANDIDATE
     human_decision_on_delta: PENDING
 
+  manual_security_step_required:
+    reason: GitHub connector cannot create or expose repository secrets
+    steps:
+      - open Faadil1/Faadil1-fortyguard-temperature-ai-2026 on GitHub
+      - open Settings
+      - open Secrets and variables then Actions
+      - choose New repository secret
+      - set name exactly FORTYGUARD_API_KEY
+      - paste the real FortyGuard API key there, never in chat or a repository file
+      - open Actions
+      - choose Gate 2 Live Causality Probe
+      - choose Run workflow on main
+    after_run: >-
+      Read the private artifact before committing any evidence. Verify activity IDs, raw response, schema fingerprint and unit attestation,
+      then classify PASS_STRONG, PASS_THERMAL_DIFFERENTIATION_ONLY or FAIL_NO_MATERIAL_DIFFERENTIATION. Update CANONICAL-STATE.yaml and
+      HANDOVER.yaml immediately after that material result.
+
+  connected_account_checks:
+    gmail_FortyGuard_search: NO_MATCHING_MESSAGES_FOUND_IN_CONNECTED_GMAIL
+    implication: no API key or organizer eligibility confirmation recovered from that mailbox
+
+  do_not_do_yet:
+    - deep_UI
+    - LLM_agent
+    - satellite_or_streetview_decoration
+    - full_database_or_auth
+    - broad_network_scale_build
+    - involve_Cowork
+    - terminal_packaging
+
+  blockers:
+    current_gate:
+      - FORTYGUARD_API_KEY_not_configured_as_GitHub_Actions_repository_secret
+    terminal_readiness:
+      - Canada_Quebec_eligibility_unresolved_in_official_rules
+    nonterminal:
+      - requested_vs_accessible_repository_name
+      - checkpoint_3_human_decision_on_I23_dual_proof_delta
+      - remaining_submission_form_handbook_contradictions
+
   exact_next_gate: FORTYGUARD_GATE_2_REAL_CAUSALITY_PROBE_EXECUTION
+  exact_next_owner: PBPD
   exact_next_action: >-
-    Make FORTYGUARD_API_KEY available in a safe execution environment and run the bounded live probe. Do not paste/commit the key. Review
-    the raw response and unit/schema attestation, then record PASS_STRONG / PASS_THERMAL_DIFFERENTIATION_ONLY / FAIL. Only after a pass
-    should the product architecture be frozen for Cowork/build-scale execution.
+    Configure FORTYGUARD_API_KEY as a GitHub Actions repository secret and manually dispatch `Gate 2 Live Causality Probe` on main. Then
+    review the private artifact and close P1/P2/P4 with a real causality verdict. Do not start deep UI, LLM-agent work, Cowork, broad build
+    or terminal packaging before a live pass. Resolve Canada/Quebec through HOI before any future SUBMISSION_READY claim.
+
+  continuity_requirements:
+    - update CANONICAL-STATE.yaml after every material project step
+    - update HANDOVER.yaml after significant milestones and before conversation transfer
+    - canonical project state outranks chat memory
+    - preserve raw evidence and exact run/activity identifiers
+    - never downgrade UNRESOLVED eligibility to ELIGIBLE by inference
