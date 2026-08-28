@@ -1,7 +1,7 @@
 canonical_state:
   protocol_version: 1
   project: FORTYGUARD_HACKATHON_26_TEMPERATURE_AI
-  date: 2026-08-24
+  date: 2026-08-28
   source_of_truth: GITHUB_BUILD_REPOSITORY
 
   repository:
@@ -60,12 +60,50 @@ canonical_state:
       no_actual_delivered_power_without_telemetry: true
       no_failure_prediction: true
 
+  hoi_intelligence_2026_08_28:
+    status: CANONICAL_RESEARCH_COMPLETE
+    artifact: research/FORTYGUARD-HOI-WINNER-COMPETITOR-INTELLIGENCE-2026-08-28.md
+    artifact_blob: 0ef2c4d60625fa12b4a2abbfa5396b0a5a825354
+    eligibility:
+      status: UNRESOLVED_QUEBEC_CANADA
+      official_global_virtual_free_signal: true
+      explicit_Canada_or_Quebec_rule_found: false
+      terminal_submission_ready_allowed_while_unresolved: false
+    winner_intelligence:
+      same_event_prior_winner_corpus: NONE_FIRST_OWN_FORTYGUARD_HACKATHON
+      proxy_winner: CARE_CAST_HEALTH_IN_CLIMATE_NYC_2025_FIRST_PLACE
+      proxy_winner_law: PRECISE_PROBLEM_REAL_LOCAL_DATA_ACTION_LOW_FRICTION_CREDIBLE_IMPACT_CLEAR_PRESENTATION
+    competitor_intelligence:
+      visible_saturated_surfaces:
+        - generic_heat_risk_alerts
+        - worker_or_rider_heat_routing
+        - generic_agentic_temperature_advisors
+        - solar_farm_thermal_optimization
+        - data_center_cooling
+        - broad_heat_dashboards
+      public_EV_charging_derating_dispatch_collision_found: false
+      collision_confidence: BOUNDED_PUBLIC_SCAN_ONLY
+    decision: KEEP_LOCKED_CONCEPT_PENDING_LIVE_PROBE
+    pivot_triggered: false
+
   gate_2:
     id: FORTYGUARD_GATE_2_ARCHITECTURE_SPONSOR_CAUSALITY_AND_PROOF_PATH
-    status: CORE_ARCHITECTURE_AND_PROBE_READY_REAL_API_EXECUTION_BLOCKED
+    status: SECURE_RUNNER_PROMOTED_REAL_API_EXECUTION_BLOCKED_MISSING_SECRET
     checkpoint: decisions/CHECKPOINT-3-ARCHITECTURE-SPONSOR-CAUSALITY-PROOF-PATH.yaml
     probe_code: probe/thermal_causality_probe.py
     probe_runbook: probe/README.md
+    secure_runner:
+      workflow: .github/workflows/gate2-live-causality-probe.yml
+      pull_request: 1
+      merge_sha: 5d46fbf35b514523cb0e8d872b6e8c876d4767b6
+      validated_run: 33192478438
+      runner_validation: PASS
+      secret_detection: PASS
+      live_probe_status: BLOCKED_MISSING_FORTYGUARD_API_KEY
+      artifact_id: 9694323344
+      artifact_digest: sha256:6cd864f66ea47157cf9f2c92809cb512882b0cff31a27d7bf48a485eb8638ae5
+      artifact_expiry: 2026-09-04T16:58:25Z
+      automatic_repository_evidence_commit: false
     core_architecture:
       - raw_FortyGuard_evidence_capture_with_activity_id_and_schema_hash
       - real_AFDC_NLR_EV_site_coordinates
@@ -83,8 +121,15 @@ canonical_state:
       same_profile_across_sites: true
       tcm_call_budget_max: 3
       persistence_or_exceedance_optional_calls_max: 1
-      real_execution_status: BLOCKED_MISSING_FORTYGUARD_API_KEY_IN_AVAILABLE_RUNTIME
-      fixture_execution_status: CODE_READY_NOT_COUNTED_AS_SPONSOR_EVIDENCE
+      real_execution_status: BLOCKED_MISSING_FORTYGUARD_API_KEY_GITHUB_ACTIONS_SECRET
+      fixture_execution_status: PASS_STRONG_SYNTHETIC_PIPELINE_ONLY
+      fixture_evidence_class: SYNTHETIC_FIXTURE_PIPELINE_TEST_ONLY
+      fixture_metrics:
+        local_temperature_spread_c: 13.0
+        documented_derating_bands: 4
+        expected_capacity_spread_kw: 49.5
+        expected_capacity_spread_percent_nameplate: 33.0
+        predeclared_jobs_with_feasible_set_change: 5
     semantic_alignment:
       FortyGuard_heatmap_as_ambient_input: STRONGLY_SUPPORTED_BY_OFFICIAL_QUICKSTART_USE_CASES
       charger_internal_temperature_claim: FORBIDDEN
@@ -116,7 +161,7 @@ canonical_state:
       causes no PBPD promotion.
 
   proof_gates:
-    P0_fixture_pipeline: READY
+    P0_fixture_pipeline: PASS_STRONG_SYNTHETIC_ONLY
     P1_real_schema_and_unit: BLOCKED_MISSING_API_KEY
     P2_spatial_derating_differentiation: PENDING
     P3_duration_context_optional: PENDING
@@ -125,9 +170,11 @@ canonical_state:
 
   build_cutline:
     do_now:
-      - run_bounded_real_FortyGuard_causality_probe_when_key_available
-      - preserve_raw_response_and_provenance
+      - configure_FORTYGUARD_API_KEY_as_repository_Actions_secret
+      - dispatch_Gate_2_Live_Causality_Probe_workflow
+      - preserve_raw_response_activity_ids_and_schema_attestation
       - stop_early_on_strong_pass_or_clear_fail
+      - resolve_Canada_Quebec_eligibility_before_terminal_submission_readiness
     do_not_do_yet:
       - deep_UI
       - LLM_agent
@@ -135,9 +182,11 @@ canonical_state:
       - full_database_or_auth
       - broad_network_scale_build
       - involve_Cowork
+      - terminal_packaging
 
   current_blockers:
-    - real_FortyGuard_API_key_not_available_to_this_runtime
+    - FORTYGUARD_API_KEY_not_configured_as_GitHub_Actions_repository_secret
+    - Canada_Quebec_eligibility_unresolved_in_official_rules
     - requested_vs_accessible_repository_name
     - checkpoint_3_human_decision_on_I23_dual_proof_delta
     - remaining_submission_form_handbook_contradictions
@@ -149,14 +198,19 @@ canonical_state:
     - {milestone: CHECKPOINT_2_CONCEPT_SELECTION, status: COMPLETE_HUMAN_GO}
     - {milestone: CHECKPOINT_3_STABLE_ARCHITECTURE, status: COMPLETE}
     - {milestone: CHECKPOINT_3_I23_SHADOW, status: COMPLETE_STRICT_IMPROVEMENT_CANDIDATE}
-    - {milestone: GATE_2_BOUNDED_CAUSALITY_PROBE_IMPLEMENTATION, status: READY_REAL_EXECUTION_BLOCKED_BY_KEY}
+    - {milestone: GATE_2_BOUNDED_CAUSALITY_PROBE_IMPLEMENTATION, status: COMPLETE}
+    - {milestone: GATE_2_SECURE_GITHUB_ACTIONS_RUNNER, status: PASS_PROMOTED_PR_1}
+    - {milestone: GATE_2_FIXTURE_EXECUTION, status: PASS_STRONG_SYNTHETIC_ONLY}
+    - {milestone: HOI_WINNER_COMPETITOR_INTELLIGENCE, status: COMPLETE_KEEP_CONCEPT}
 
   exact_next_gate: FORTYGUARD_GATE_2_REAL_CAUSALITY_PROBE_EXECUTION
+  exact_next_owner: PBPD
   exact_next_action: >-
-    Run probe/thermal_causality_probe.py against real FortyGuard data once FORTYGUARD_API_KEY is available in an execution environment.
-    Preserve raw response/activity ids, apply the same declared equipment profile across sites, and compare hyperlocal feasible-site sets
-    against the uniform baseline. If strong pass, lock the proof path and then decide whether to add I23's prospective current/+12h mode
-    before involving Cowork. If fail, stop deep build and pivot using the preserved alternatives.
+    Configure repository Actions secret FORTYGUARD_API_KEY in Faadil1/Faadil1-fortyguard-temperature-ai-2026, then manually run the
+    `Gate 2 Live Causality Probe` workflow on main. Review the private artifact before committing any real evidence. Require P1 schema/unit
+    attestation, then classify PASS_STRONG / PASS_THERMAL_DIFFERENTIATION_ONLY / FAIL. If strong pass, freeze the proof path and decide on
+    I23 prospective current/+12h mode. If fail, stop deep build and pivot to preserved alternatives. Canada/Quebec eligibility remains a
+    separate terminal-readiness blocker and must be resolved before SUBMISSION_READY.
 
   continuity_protocol:
     canonical_state_replaces_prior_current_state: true
