@@ -1,7 +1,7 @@
 handover:
   id: FORTYGUARD-HACKATHON-26-HANDOVER
   date: 2026-08-28
-  status: GATE_2_SECURE_RUNNER_READY_LIVE_BLOCKED_MISSING_SECRET
+  status: MANUAL_REGISTRATION_SENT_API_ACCESS_PENDING_GATE_2_BLOCKED
 
   resume_rule: >-
     Read CANONICAL-STATE.yaml first, then this HANDOVER.yaml. Do not reconstruct FortyGuard state from chat when these canonical files exist.
@@ -34,6 +34,21 @@ handover:
     - no API key committed or pasted into repository or chat
     - fixture evidence never counts as sponsor causality evidence
     - no terminal submission-readiness while Canada/Quebec eligibility remains unresolved
+
+  registration_and_api_access:
+    form_submission: FAILED_REQUEST_DID_NOT_REACH_SERVER
+    organizer_fallback_instruction: email_hackathon_at_fortyguard_dot_com_for_manual_registration
+    manual_registration_request: SENT_BY_HUMAN_2026_08_28
+    request_included:
+      - manual_registration
+      - Hackathon_API_access
+      - FortyGuard_API_key_instructions
+    organizer_response: PENDING
+    registration_confirmation: PENDING
+    api_access: PENDING
+    api_key: NOT_YET_RECEIVED
+    eligibility_Quebec_Canada: STILL_UNRESOLVED
+    next_human_signal_needed: organizer_reply_or_registration_confirmation
 
   locked_problem_job:
     id: EV_CHARGING_NETWORK_THERMAL_CAPACITY_AND_DERATING_OPERATIONS
@@ -186,7 +201,8 @@ handover:
 
   manual_security_step_required:
     reason: GitHub connector cannot create or expose repository secrets
-    steps:
+    prerequisite: RECEIVE_FORTYGUARD_API_KEY_OR_ACCESS_PATH_FROM_ORGANIZER
+    steps_after_key_received:
       - open Faadil1/Faadil1-fortyguard-temperature-ai-2026 on GitHub
       - open Settings
       - open Secrets and variables then Actions
@@ -203,7 +219,8 @@ handover:
 
   connected_account_checks:
     gmail_FortyGuard_search: NO_MATCHING_MESSAGES_FOUND_IN_CONNECTED_GMAIL
-    implication: no API key or organizer eligibility confirmation recovered from that mailbox
+    manual_registration_email: SENT_BY_HUMAN
+    implication: organizer response and API access are now pending
 
   do_not_do_yet:
     - deep_UI
@@ -216,6 +233,8 @@ handover:
 
   blockers:
     current_gate:
+      - manual_registration_confirmation_pending
+      - FortyGuard_API_access_or_API_key_pending_organizer_response
       - FORTYGUARD_API_KEY_not_configured_as_GitHub_Actions_repository_secret
     terminal_readiness:
       - Canada_Quebec_eligibility_unresolved_in_official_rules
@@ -227,9 +246,10 @@ handover:
   exact_next_gate: FORTYGUARD_GATE_2_REAL_CAUSALITY_PROBE_EXECUTION
   exact_next_owner: PBPD
   exact_next_action: >-
-    Configure FORTYGUARD_API_KEY as a GitHub Actions repository secret and manually dispatch `Gate 2 Live Causality Probe` on main. Then
-    review the private artifact and close P1/P2/P4 with a real causality verdict. Do not start deep UI, LLM-agent work, Cowork, broad build
-    or terminal packaging before a live pass. Resolve Canada/Quebec through HOI before any future SUBMISSION_READY claim.
+    Wait for the organizer response to the manual registration/API-access request. Once FortyGuard provides the API key or access path,
+    configure FORTYGUARD_API_KEY as a GitHub Actions repository secret and dispatch `Gate 2 Live Causality Probe` on main. Then review the
+    private artifact and close P1/P2/P4 with a real causality verdict. Do not start deep UI, LLM-agent work, Cowork, broad build or terminal
+    packaging before a live pass. Resolve Canada/Quebec through HOI before any future SUBMISSION_READY claim.
 
   continuity_requirements:
     - update CANONICAL-STATE.yaml after every material project step
