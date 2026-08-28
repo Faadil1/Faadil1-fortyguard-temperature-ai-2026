@@ -1,0 +1,77 @@
+name: Gate 2 Live Causality Probe
+
+on:
+  push:
+    branches:
+      - gate2/live-causality-probe-runner
+    paths:
+      - '.github/workflows/gate2-live-causality-probe.yml'
+      - 'probe/**'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/gate2-live-causality-probe.yml'
+      - 'probe/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  causality-probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      FORTYGUARD_API_KEY: ${{ secrets.FORTYGUARD_API_KEY }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Run zero-network fixture first
+        run: python probe/thermal_causality_probe.py --mode fixture
+
+      - name: Detect FortyGuard secret availability
+        id: fortyguard-secret
+        shell: bash
+        run: |
+          if [ -n "$FORTYGUARD_API_KEY" ]; then
+            echo "present=true" >> "$GITHUB_OUTPUT"
+            echo "FORTYGUARD_API_KEY_PRESENT=true"
+          else
+            echo "present=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::LIVE_PROBE_BLOCKED_MISSING_SECRET — configure repository secret FORTYGUARD_API_KEY, then dispatch this workflow."
+          fi
+
+      - name: Run bounded real FortyGuard causality probe
+        if: steps.fortyguard-secret.outputs.present == 'true'
+        run: python probe/thermal_causality_probe.py --mode live
+
+      - name: Record blocked live state
+        if: steps.fortyguard-secret.outputs.present != 'true'
+        shell: bash
+        run: |
+          echo "LIVE_PROBE_STATUS=BLOCKED_MISSING_FORTYGUARD_API_KEY" | tee probe/output/live-probe-status.txt
+          {
+            echo "## Gate 2 live causality probe"
+            echo ""
+            echo "- Runner validation: PASS"
+            echo "- Fixture: executed successfully (synthetic evidence only)"
+            echo "- Live probe: BLOCKED_MISSING_FORTYGUARD_API_KEY"
+            echo "- Next action: configure the repository Actions secret FORTYGUARD_API_KEY and run this workflow manually"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload probe evidence privately
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: fortyguard-gate2-causality-probe-evidence
+          path: probe/output/
+          if-no-files-found: warn
+          retention-days: 7
