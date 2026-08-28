@@ -1,0 +1,53 @@
+name: Gate 2 Live Causality Probe
+
+on:
+  push:
+    branches:
+      - gate2/live-causality-probe-runner
+    paths:
+      - '.github/workflows/gate2-live-causality-probe.yml'
+      - 'probe/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  causality-probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      FORTYGUARD_API_KEY: ${{ secrets.FORTYGUARD_API_KEY }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Run zero-network fixture first
+        run: python probe/thermal_causality_probe.py --mode fixture
+
+      - name: Verify FortyGuard secret is available
+        shell: bash
+        run: |
+          if [ -z "$FORTYGUARD_API_KEY" ]; then
+            echo "::error::FORTYGUARD_API_KEY is not configured as a GitHub Actions secret for this repository."
+            exit 2
+          fi
+          echo "FORTYGUARD_API_KEY_PRESENT=true"
+
+      - name: Run bounded real FortyGuard causality probe
+        run: python probe/thermal_causality_probe.py --mode live
+
+      - name: Upload probe evidence privately
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: fortyguard-gate2-causality-probe-evidence
+          path: probe/output/
+          if-no-files-found: warn
+          retention-days: 7
