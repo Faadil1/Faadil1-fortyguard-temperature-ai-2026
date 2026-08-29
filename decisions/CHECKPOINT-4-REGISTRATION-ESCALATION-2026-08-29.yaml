@@ -1,0 +1,49 @@
+checkpoint:
+  id: FORTYGUARD_REGISTRATION_ESCALATION_2026_08_29
+  date: 2026-08-29
+  project: FORTYGUARD_HACKATHON_26_TEMPERATURE_AI
+  source_of_truth: GITHUB_BUILD_REPOSITORY
+
+  registration_state:
+    original_form_submission: FAILED_CLIENT_SIDE_REQUEST_DID_NOT_REACH_SERVER
+    organizer_manual_registration_instruction: hackathon@fortyguard.com
+    manual_registration_email_sent: true
+    manual_registration_email_sent_at: 2026-08-28T13:20:25-04:00
+    organizer_response_as_of_2026_08_29_09_44_ET: NONE_FOUND_IN_CONNECTED_GMAIL
+    spam_all_mail_check_performed: true
+    registration_confirmation: PENDING
+    api_access: PENDING
+    api_key: NOT_RECEIVED
+
+  official_event_timing:
+    build_sprint_end: 2026-08-30
+    submission_deadline: 2026-08-30
+    urgency: HIGH
+
+  official_access_signal:
+    participant_API_access_promised: true
+    participant_trial_credits_promised: true
+    developer_quickstart_promised: true
+    community_slack_promised: true
+    source: FortyGuard_Luma_event_page
+
+  escalation_decision:
+    status: FOLLOW_UP_REQUIRED_TODAY
+    primary_channel: hackathon@fortyguard.com
+    secondary_channel: info@fortyguard.com
+    tertiary_channel: Luma_Contact_the_Host
+    do_not_wait_passively: true
+    do_not_purchase_API_plan_yet: true
+    do_not_paste_or_commit_API_key: true
+
+  gate_effect:
+    gate_2_live_probe: STILL_BLOCKED_MISSING_FORTYGUARD_API_KEY
+    deep_build_authorized: false
+    terminal_submission_ready_allowed: false
+    canada_quebec_eligibility: UNRESOLVED
+
+  exact_next_action: >-
+    Send a concise follow-up to the existing manual-registration thread today, noting that the official form failed, the submission deadline is Aug 30,
+    and requesting immediate manual registration plus Hackathon Temperature API access. CC info@fortyguard.com. If no response after that,
+    use the Luma event page's Contact the Host action. When API access arrives, place FORTYGUARD_API_KEY directly into the GitHub Actions
+    repository secret and run Gate 2 Live Causality Probe on main.
